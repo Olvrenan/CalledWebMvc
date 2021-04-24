@@ -27,9 +27,11 @@ namespace CalledWebMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(Funcionary funcionary)
         {
-            return View();
+            _funcionaryService.Insert(funcionary);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

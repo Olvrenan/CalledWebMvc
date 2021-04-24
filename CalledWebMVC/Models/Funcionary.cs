@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CalledWebMVC.Models.Enums;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace CalledWebMVC.Models
 {
@@ -11,14 +13,28 @@ namespace CalledWebMVC.Models
 
         //****Informações pessoais****
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "{0} required")]
+        [StringLength(60, MinimumLength = 3, ErrorMessage = "{0} size should be between {2} and {1}")]
         public string Name { get; set; }
         public string Rg { get; set; }
+
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Birth Day")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthDay { get; set; }
+
+        [Required(ErrorMessage = "{0} required")]
+        [EmailAddress(ErrorMessage = "Enter a valid email")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public string Phone { get; set; }
 
         //*****Informações Corporativas****
         public string Occupation { get; set; }
+       
+        [Display(Name = "Type Contract")]
         public ContractTypes TypeContract { get; set; }
 
         //Lista de tarefas atribuidas 

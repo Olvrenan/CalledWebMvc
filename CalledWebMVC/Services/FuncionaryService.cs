@@ -19,5 +19,10 @@ namespace CalledWebMVC.Services
         {
             return _context.Funcionary.ToList();
         }
+        public void Insert (Funcionary obj)
+        {
+            _context.Add(obj);
+            _context.SaveChanges();
+        }
     }
 }
