@@ -1,4 +1,5 @@
 ﻿using CalledWebMVC.Models;
+using CalledWebMVC.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,16 @@ namespace CalledWebMVC.Controllers
 {
     public class FuncionaryController : Controller
     {
+        private readonly FuncionaryService _funcionaryService;
+
+        public FuncionaryController(FuncionaryService funcionaryService)
+        {
+            _funcionaryService = funcionaryService;
+        }
         public IActionResult Index()
         {
-            return View();
+            var list = _funcionaryService.FindAll();
+            return View(list);
         }
         public IActionResult Create()
         {

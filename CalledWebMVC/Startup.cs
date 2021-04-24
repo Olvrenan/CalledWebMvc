@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CalledWebMVC.Services; 
 
 namespace CalledWebMVC
 {
@@ -34,7 +35,8 @@ namespace CalledWebMVC
 
 
             services.AddScoped<SeedingService>();
-        
+            services.AddScoped<FuncionaryService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
