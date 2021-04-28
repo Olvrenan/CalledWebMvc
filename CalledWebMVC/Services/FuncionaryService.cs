@@ -24,5 +24,17 @@ namespace CalledWebMVC.Services
             _context.Add(obj);
             _context.SaveChanges();
         }
+
+        public Funcionary FindById(int Id)
+        {
+            return _context.Funcionary.FirstOrDefault(obj => obj.Id == Id);
+        }
+
+        public void Remove (int id)
+        {
+            var obj = _context.Funcionary.Find(id);
+            _context.Funcionary.Remove(obj);
+            _context.SaveChanges();
+        }
     }
 }
