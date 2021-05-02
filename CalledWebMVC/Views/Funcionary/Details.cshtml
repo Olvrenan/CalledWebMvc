@@ -1,0 +1,47 @@
+﻿@model CalledWebMVC.Models.Funcionary
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<h1>@ViewData["Title"]</h1>
+<br />
+<h4>Funcionary</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <p><strong>@Html.DisplayNameFor(model => model.Name)</strong></p>
+        <p>@Html.DisplayFor(model => model.Name)</p>
+    </div>
+    <div class="col-md-4">
+        <p><strong>@Html.DisplayNameFor(model => model.Rg)</strong></p>
+        <p>@Html.DisplayFor(model => model.Rg)</p>
+    </div>
+    <div class="col-md-4">
+        <p><strong>@Html.DisplayNameFor(model => model.Phone)</strong></p>
+        <p>@Html.DisplayFor(model => model.Phone)</p>
+    </div>
+    <div class="col-md-4">
+        <p><strong>@Html.DisplayNameFor(model => model.Email)</strong></p>
+        <p>@Html.DisplayFor(model => model.Email)</p>
+    </div>
+    <div class="col-md-4">
+        <p><strong>@Html.DisplayNameFor(model => model.BirthDay)</strong></p>
+        <p>@Html.DisplayFor(model => model.BirthDay)</p>
+    </div>
+    <div class="col-md-4">
+        <p><strong>@Html.DisplayNameFor(model => model.Occupation)</strong></p>
+        <p>@Html.DisplayFor(model => model.Occupation)</p>
+    </div>
+    <div class="col-md-4">
+        <p><strong>@Html.DisplayNameFor(model => model.TypeContract)</strong></p>
+        <p>@Html.DisplayFor(model => model.TypeContract)</p>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+    

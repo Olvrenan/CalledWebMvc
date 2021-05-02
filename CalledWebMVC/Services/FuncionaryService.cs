@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CalledWebMVC.Models;
+using CalledWebMVC.Services.Exceptions;
 
 namespace CalledWebMVC.Services
 {
@@ -35,6 +36,24 @@ namespace CalledWebMVC.Services
             var obj = _context.Funcionary.Find(id);
             _context.Funcionary.Remove(obj);
             _context.SaveChanges();
+        }
+
+        public void Update(Funcionary obj)
+        {
+            bool hasAny = _context.Funcionary.Any(x => x.Id == obj.Id);
+            if (!hasAny)
+            {
+                throw new NotFoundException("id not found");
+            }
+            try
+            {
+                _context.Update(obj);
+                _context.SaveChanges();
+            }
+            catch(DbConcurrencyException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
         }
     }
 }

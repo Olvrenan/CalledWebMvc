@@ -1,5 +1,6 @@
 ﻿using CalledWebMVC.Models;
 using CalledWebMVC.Services;
+using CalledWebMVC.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace CalledWebMVC.Controllers
             var obj = _funcionaryService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
             return View(obj);
@@ -51,11 +52,61 @@ namespace CalledWebMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete (int id)
+        public IActionResult Delete(int id)
         {
             _funcionaryService.Remove(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var obj = _funcionaryService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            return View(obj);
+        }
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var funcionary = _funcionaryService.FindById(id.Value);
+            if (funcionary == null)
+            {
+                return NotFound();
+            }
+
+            return View(funcionary);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public IActionResult Edit(int id, Funcionary funcionary)
+        {
+            if (id != funcionary.Id)
+            {
+                return NotFound();
+            }
+            try
+            {
+                _funcionaryService.Update(funcionary);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (ApplicationException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
 
         }
+
     }
 }
