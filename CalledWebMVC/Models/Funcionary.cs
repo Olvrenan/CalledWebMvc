@@ -31,10 +31,14 @@ namespace CalledWebMVC.Models
         public string Email { get; set; }
         public string Phone { get; set; }
 
+
         //*****Informações Corporativas****
-        public string Occupation { get; set; }
+        [Required(ErrorMessage = "{0} required")]
+        public Occupations Occupation { get; set; }
        
+
         [Display(Name = "Type Contract")]
+        [Required(ErrorMessage = "{0} required")]
         public ContractTypes TypeContract { get; set; }
 
         //Lista de tarefas atribuidas 
@@ -43,7 +47,7 @@ namespace CalledWebMVC.Models
         public Funcionary()
         {
         }
-        public Funcionary(int id, string name, string rg, DateTime birthDay, string email, string phone, string occupation, ContractTypes typeContract)
+        public Funcionary(int id, string name, string rg, DateTime birthDay, string email, string phone, Occupations occupation, ContractTypes typeContract)
         {
             Id = id;
             Name = name;
@@ -54,7 +58,7 @@ namespace CalledWebMVC.Models
             Occupation = occupation;
             TypeContract = typeContract;
         }
-        public Funcionary(int id, string name, string rg, DateTime birthDay, string email, string phone, string occupation, ContractTypes typeContract, string task)
+        public Funcionary(int id, string name, string rg, DateTime birthDay, string email, string phone, Occupations occupation, ContractTypes typeContract, string task)
         {
             Id = id;
             Name = name;

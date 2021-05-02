@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 
 namespace CalledWebMVC.Models.Enums
 {
-    public enum Occupation : int
+    public enum Occupations : int
     {
         Pedreiro = 1,
-        Ajudante = 2,
-        Funcionario = 3,
-        Colaborador = 4
+        Carpinteiro = 2,
+        Armador = 3,
+        Eletricista = 4,
+        Encanador = 5
 
     }
 }
