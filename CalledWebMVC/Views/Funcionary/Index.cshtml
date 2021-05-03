@@ -61,9 +61,9 @@
                 @Html.DisplayFor(modelItem => item.TypeContract)
             </td>
             <td>
-                <a asp-action="Edit" class="text-warning" asp-route-id="@item.Id">Editar</a> |
-                <a asp-action="Details" class="text-success" asp-route-id="@item.Id">Detalhes</a> |
-                <a asp-action="Delete" class="text-danger" asp-route-id="@item.Id">Excluir</a>
+                <a asp-action="Edit" class=" btn btn-primary" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Detalhes</a> |
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Excluir</a>
             </td>
         </tr>
 }
