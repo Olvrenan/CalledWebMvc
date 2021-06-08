@@ -8,7 +8,7 @@ namespace CalledWebMVC.Migrations
         {
             migrationBuilder.AlterColumn<int>(
                 name: "Occupation",
-                table: "Funcionary",
+                table: "Functionary",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "longtext CHARACTER SET utf8mb4",
@@ -16,7 +16,7 @@ namespace CalledWebMVC.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
-                table: "Funcionary",
+                table: "Functionary",
                 maxLength: 60,
                 nullable: false,
                 oldClrType: typeof(string),
@@ -25,7 +25,7 @@ namespace CalledWebMVC.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "Email",
-                table: "Funcionary",
+                table: "Functionary",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "longtext CHARACTER SET utf8mb4",
@@ -36,14 +36,14 @@ namespace CalledWebMVC.Migrations
         {
             migrationBuilder.AlterColumn<string>(
                 name: "Occupation",
-                table: "Funcionary",
+                table: "Functionary",
                 type: "longtext CHARACTER SET utf8mb4",
                 nullable: true,
                 oldClrType: typeof(int));
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
-                table: "Funcionary",
+                table: "Functionary",
                 type: "longtext CHARACTER SET utf8mb4",
                 nullable: true,
                 oldClrType: typeof(string),
@@ -51,7 +51,7 @@ namespace CalledWebMVC.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "Email",
-                table: "Funcionary",
+                table: "Functionary",
                 type: "longtext CHARACTER SET utf8mb4",
                 nullable: true,
                 oldClrType: typeof(string));

@@ -1,17 +1,16 @@
-﻿@model CalledWebMVC.Models.Funcionary
+﻿@model CalledWebMVC.Models.Functionary
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
 
 <h1>@ViewData["Title"]</h1>
 <br />
-<h4>Funcionary</h4>
+<h4>Functionary</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <input type="hidden" asp-for="Id" />
+<div class="form-row">
+    <div >
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -40,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Occupation" class="control-label"></label>
-                <select asp-for="TypeContract" asp-items="Html.GetEnumSelectList <CalledWebMVC.Models.Enums.Occupations>()" class="form-control"></select>
+                <select asp-for="Occupation" asp-items="Html.GetEnumSelectList <CalledWebMVC.Models.Enums.Occupations>()" class="form-control"></select>
                 <span asp-validation-for="Occupation" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -48,17 +47,13 @@
                 <select asp-for="TypeContract" asp-items="Html.GetEnumSelectList <CalledWebMVC.Models.Enums.ContractTypes>()" class="form-control"></select>
                 <span asp-validation-for="TypeContract" class="text-danger"></span>
             </div>
-
+            
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
-
-<hr />
-
 
 <div>
     <a class="btn btn-primary" asp-action="Index">Back to List</a>

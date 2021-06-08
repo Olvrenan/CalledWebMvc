@@ -35,7 +35,8 @@ namespace CalledWebMVC
 
 
             services.AddScoped<SeedingService>();
-            services.AddScoped<FuncionaryService>();
+            services.AddScoped<FunctionaryService>();
+            services.AddScoped<TaskService>();
 
         }
 

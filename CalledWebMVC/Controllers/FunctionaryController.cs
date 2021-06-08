@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace CalledWebMVC.Controllers
 {
-    public class FuncionaryController : Controller
+    public class FunctionaryController : Controller
     {
-        private readonly FuncionaryService _funcionaryService;
+        private readonly FunctionaryService _FunctionaryService;
 
-        public FuncionaryController(FuncionaryService funcionaryService)
+        public FunctionaryController(FunctionaryService FunctionaryService)
         {
-            _funcionaryService = funcionaryService;
+            _FunctionaryService = FunctionaryService;
         }
         public IActionResult Index()
         {
-            var list = _funcionaryService.FindAll();
+            var list = _FunctionaryService.FindAll();
             return View(list);
         }
         public IActionResult Create()
@@ -29,9 +29,9 @@ namespace CalledWebMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Funcionary funcionary)
+        public IActionResult Create(Functionary Functionary)
         {
-            _funcionaryService.Insert(funcionary);
+            _FunctionaryService.Insert(Functionary);
             return RedirectToAction(nameof(Index));
         }
 
@@ -41,7 +41,7 @@ namespace CalledWebMVC.Controllers
             {
                 return NotFound();
             }
-            var obj = _funcionaryService.FindById(id.Value);
+            var obj = _FunctionaryService.FindById(id.Value);
             if (obj == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace CalledWebMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
-            _funcionaryService.Remove(id);
+            _FunctionaryService.Remove(id);
             return RedirectToAction(nameof(Index));
         }
 
@@ -64,7 +64,7 @@ namespace CalledWebMVC.Controllers
             {
                 return NotFound();
             }
-            var obj = _funcionaryService.FindById(id.Value);
+            var obj = _FunctionaryService.FindById(id.Value);
             if (obj == null)
             {
                 return NotFound();
@@ -78,27 +78,27 @@ namespace CalledWebMVC.Controllers
             {
                 return NotFound();
             }
-            var funcionary = _funcionaryService.FindById(id.Value);
-            if (funcionary == null)
+            var Functionary = _FunctionaryService.FindById(id.Value);
+            if (Functionary == null)
             {
                 return NotFound();
             }
 
-            return View(funcionary);
+            return View(Functionary);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Edit(int id, Funcionary funcionary)
+        public IActionResult Edit(int id, Functionary Functionary)
         {
-            if (id != funcionary.Id)
+            if (id != Functionary.Id)
             {
                 return NotFound();
             }
             try
             {
-                _funcionaryService.Update(funcionary);
+                _FunctionaryService.Update(Functionary);
                 return RedirectToAction(nameof(Index));
             }
             catch (ApplicationException e)

@@ -12,6 +12,7 @@ namespace CalledWebMVC.Models
             : base(options)
         { 
         }
-        public DbSet<Funcionary> Funcionary { get; set; }
+        public DbSet<Functionary> Functionary { get; set; }
+        public DbSet<Task> Task { get; set; }
     }
 }

@@ -7,40 +7,41 @@ using CalledWebMVC.Services.Exceptions;
 
 namespace CalledWebMVC.Services
 {
-    public class FuncionaryService
+    public class FunctionaryService
     {
         public readonly CalledWebMvcContext _context;
 
-        public FuncionaryService(CalledWebMvcContext context)
+        public FunctionaryService(CalledWebMvcContext context)
         {
             _context = context;
         }
 
-        public List<Funcionary> FindAll()
+        public List<Functionary> FindAll()
         {
-            return _context.Funcionary.ToList();
+            return _context.Functionary.OrderBy(x => x.Name)
+                .ToList();
         }
-        public void Insert (Funcionary obj)
+        public void Insert (Functionary obj)
         {
             _context.Add(obj);
             _context.SaveChanges();
         }
 
-        public Funcionary FindById(int Id)
+        public Functionary FindById(int Id)
         {
-            return _context.Funcionary.FirstOrDefault(obj => obj.Id == Id);
+            return _context.Functionary.FirstOrDefault(obj => obj.Id == Id);
         }
 
         public void Remove (int id)
         {
-            var obj = _context.Funcionary.Find(id);
-            _context.Funcionary.Remove(obj);
+            var obj = _context.Functionary.Find(id);
+            _context.Functionary.Remove(obj);
             _context.SaveChanges();
         }
 
-        public void Update(Funcionary obj)
+        public void Update(Functionary obj)
         {
-            bool hasAny = _context.Funcionary.Any(x => x.Id == obj.Id);
+            bool hasAny = _context.Functionary.Any(x => x.Id == obj.Id);
             if (!hasAny)
             {
                 throw new NotFoundException("id not found");

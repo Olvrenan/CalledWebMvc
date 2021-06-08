@@ -19,7 +19,7 @@ namespace CalledWebMVC.Migrations
                 .HasAnnotation("ProductVersion", "3.1.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("CalledWebMVC.Models.Funcionary", b =>
+            modelBuilder.Entity("CalledWebMVC.Models.Functionary", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,7 +51,7 @@ namespace CalledWebMVC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Funcionary");
+                    b.ToTable("Functionary");
                 });
 #pragma warning restore 612, 618
         }

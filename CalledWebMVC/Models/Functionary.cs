@@ -8,46 +8,52 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CalledWebMVC.Models
 {
-    public class Funcionary
+    public class Functionary
     {
 
         //****Informações pessoais****
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "{0} required")]
-        [StringLength(60, MinimumLength = 3, ErrorMessage = "{0} size should be between {2} and {1}")]
+        [Display(Name = "Nome")]
+        [Required(ErrorMessage = "{0} Obrigatório")]
+        [StringLength(60, MinimumLength = 3, ErrorMessage = "{0} O tamanho deve ser entre {2} and {1}")]
         public string Name { get; set; }
+
+        [StringLength(12, MinimumLength = 3,  ErrorMessage = "{0} O tamanho deve ser entre {2} and {1}")]
         public string Rg { get; set; }
 
-        [Required(ErrorMessage = "{0} required")]
-        [Display(Name = "Birth Day")]
+        [Required(ErrorMessage = "{0} Obrigatório")]
+        [Display(Name = "Data de Nascimento")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthDay { get; set; }
 
-        [Required(ErrorMessage = "{0} required")]
-        [EmailAddress(ErrorMessage = "Enter a valid email")]
+        [Required(ErrorMessage = "{0} Obrigatório")]
+        [EmailAddress(ErrorMessage = "Entre com um E-mail valido")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        [Display(Name = "Contato")]
         public string Phone { get; set; }
 
 
         //*****Informações Corporativas****
-        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Cargo")]
+        [Required(ErrorMessage = "{0} Obrigatório")]
         public Occupations Occupation { get; set; }
        
 
-        [Display(Name = "Type Contract")]
-        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Contrato")]
+        [Required(ErrorMessage = "{0} Obrigatório")]
         public ContractTypes TypeContract { get; set; }
 
         //Lista de tarefas atribuidas 
         public string Task { get; set; }
 
-        public Funcionary()
+        public Functionary()
         {
         }
-        public Funcionary(int id, string name, string rg, DateTime birthDay, string email, string phone, Occupations occupation, ContractTypes typeContract)
+        public Functionary(int id, string name, string rg, DateTime birthDay, string email, string phone, Occupations occupation, ContractTypes typeContract)
         {
             Id = id;
             Name = name;
@@ -58,7 +64,7 @@ namespace CalledWebMVC.Models
             Occupation = occupation;
             TypeContract = typeContract;
         }
-        public Funcionary(int id, string name, string rg, DateTime birthDay, string email, string phone, Occupations occupation, ContractTypes typeContract, string task)
+        public Functionary(int id, string name, string rg, DateTime birthDay, string email, string phone, Occupations occupation, ContractTypes typeContract, string task)
         {
             Id = id;
             Name = name;

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CalledWebMVC.Migrations
 {
     [DbContext(typeof(CalledWebMvcContext))]
-    [Migration("20210502005846_Occupationlist")]
-    partial class Occupationlist
+    [Migration("20210531214000_Functionary")]
+    partial class Functionary
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,6 +18,37 @@ namespace CalledWebMVC.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("CalledWebMVC.Models.Task", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Assingn")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime>("DateDone")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("Datecreated")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("FunctionaryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FunctionaryId");
+
+                    b.ToTable("Task");
+                });
 
             modelBuilder.Entity("CalledWebMVC.Models.Functionary", b =>
                 {
@@ -55,6 +86,15 @@ namespace CalledWebMVC.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Functionary");
+                });
+
+            modelBuilder.Entity("CalledWebMVC.Models.Task", b =>
+                {
+                    b.HasOne("CalledWebMVC.Models.Functionary", "Functionary")
+                        .WithMany()
+                        .HasForeignKey("FunctionaryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -9,7 +9,7 @@ namespace CalledWebMVC.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Funcionary",
+                name: "Functionary",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -25,14 +25,14 @@ namespace CalledWebMVC.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Funcionary", x => x.Id);
+                    table.PrimaryKey("PK_Functionary", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Funcionary");
+                name: "Functionary");
         }
     }
 }
