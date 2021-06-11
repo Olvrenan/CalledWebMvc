@@ -5,7 +5,7 @@ using System.Linq;
 using CalledWebMVC.Services;
 using CalledWebMVC.Models;
 using CalledWebMVC.Models.ViewModels;
-
+using CalledWebMVC.Services.Exceptions;
 
 namespace CalledWebMVC.Controllers
 {
@@ -32,6 +32,22 @@ namespace CalledWebMVC.Controllers
             return View(viewModel);
         }
 
+        public IActionResult Details(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var obj = _taskService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            return View(obj);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Task task)
@@ -39,6 +55,50 @@ namespace CalledWebMVC.Controllers
            
             _taskService.Insert(task);
             return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Edit(int? id)
+        {
+  
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var obj = _taskService.FindById(id.Value);
+            if(obj == null)
+            {
+                return NotFound();
+            }
+
+            List<Functionary> funcionaries = _fuctionaryService.FindAll();
+            TaskFormViewModel viewModel = new TaskFormViewModel { Task = obj, Functionaries = funcionaries };
+            return View(viewModel); 
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public IActionResult Edit(int id, Task task)
+        {
+            if (!ModelState.IsValid)
+            {
+                var funcionaries = _fuctionaryService.FindAll();
+                var viewModel = new TaskFormViewModel { Task = task, Functionaries = funcionaries };
+                return View(viewModel);
+            }
+            if (id != task.Id)
+            {
+                return NotFound();
+            }
+            try
+            {
+                _taskService.Update(task);
+                return RedirectToAction(nameof(Index));
+            }
+            catch(ApplicationException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
+             
         }
     }
 }

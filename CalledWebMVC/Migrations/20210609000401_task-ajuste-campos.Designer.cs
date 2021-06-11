@@ -3,14 +3,16 @@ using System;
 using CalledWebMVC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CalledWebMVC.Migrations
 {
     [DbContext(typeof(CalledWebMvcContext))]
-    partial class CalledWebMvcContextModelSnapshot : ModelSnapshot
+    [Migration("20210609000401_task-ajuste-campos")]
+    partial class taskajustecampos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,8 +44,8 @@ namespace CalledWebMVC.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Rg")
-                        .HasColumnType("varchar(13) CHARACTER SET utf8mb4")
-                        .HasMaxLength(13);
+                        .HasColumnType("varchar(12) CHARACTER SET utf8mb4")
+                        .HasMaxLength(12);
 
                     b.Property<string>("Task")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");

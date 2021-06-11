@@ -19,7 +19,7 @@ namespace CalledWebMVC.Models
         [StringLength(60, MinimumLength = 3, ErrorMessage = "{0} O tamanho deve ser entre {2} and {1}")]
         public string Name { get; set; }
 
-        [StringLength(12, MinimumLength = 3,  ErrorMessage = "{0} O tamanho deve ser entre {2} and {1}")]
+        [StringLength(13, MinimumLength = 3,  ErrorMessage = "{0} O tamanho deve ser entre {2} and {1}")]
         public string Rg { get; set; }
 
         [Required(ErrorMessage = "{0} Obrigatório")]

@@ -1,0 +1,59 @@
+﻿@model CalledWebMVC.Models.Task
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<br />
+<h1>@ViewData["Title"]</h1>
+<br />
+<h4>Task</h4>
+<hr />
+
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a>
+</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <p><strong>@Html.DisplayNameFor(model => model.Id)</strong></p>
+        <p>@Html.DisplayFor(model => model.Id)</p>
+    </div>
+    <div class="col-md-4">
+        <p><strong>@Html.DisplayNameFor(model => model.TaskStatus)</strong></p>
+        <p>@Html.DisplayFor(model => model.TaskStatus)</p>
+    </div>
+    <div class="col-md-4">
+        <p><strong>@Html.DisplayNameFor(model => model.Title)</strong></p>
+        <p>@Html.DisplayFor(model => model.Title)</p>
+    </div>
+    <div class="col-md-4">
+        <p><strong>@Html.DisplayNameFor(model => model.Description)</strong></p>
+        <p>@Html.DisplayFor(model => model.Description)</p>
+    </div>
+    <div class="col-md-4">
+        <p><strong>@Html.DisplayNameFor(model => model.Datecreated)</strong></p>
+        <p>@Html.DisplayFor(model => model.Datecreated)</p>
+    </div>
+    <div class="col-md-4">
+        <p><strong>@Html.DisplayNameFor(model => model.DateDone)</strong></p>
+        <p>@Html.DisplayFor(model => model.DateDone)</p>
+    </div>
+    <div class="col-md-4">
+        <p><strong>@Html.DisplayNameFor(model => model.Functionary.Name)</strong></p>
+        <p>@Html.DisplayFor(model => model.Functionary.Name)</p>
+    </div>
+    <div class="col-md-4">
+        <p><strong>@Html.DisplayNameFor(model => model.Categoria)</strong></p>
+        <p>@Html.DisplayFor(model => model.Categoria)</p>
+    </div>
+    <div class="col-md-4">
+        <p><strong>@Html.DisplayNameFor(model => model.Sprint)</strong></p>
+        <p>@Html.DisplayFor(model => model.Sprint)</p>
+    </div>
+</div>
+<br />
+<div>
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+</div>
+

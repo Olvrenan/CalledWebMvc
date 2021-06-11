@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CalledWebMVC.Models.Enums;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CalledWebMVC.Models
 {
@@ -14,6 +13,9 @@ namespace CalledWebMVC.Models
         public DateTime DateDone { get; set; }
         public Functionary Functionary { get; set; }
         public int FunctionaryId { get; set; }
+        public String Categoria { get; set; }
+        public String Sprint { get; set; }
+        public TaskStatus TaskStatus { get; set; }
 
         public Task()
         {
