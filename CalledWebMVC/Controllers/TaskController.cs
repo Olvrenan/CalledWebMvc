@@ -45,7 +45,7 @@ namespace CalledWebMVC.Controllers
                 return NotFound();
             }
 
-            return View(obj);
+            return PartialView(obj);
         }
 
         [HttpPost]
@@ -97,8 +97,31 @@ namespace CalledWebMVC.Controllers
             catch(ApplicationException e)
             {
                 throw new DbConcurrencyException(e.Message);
-            }
-             
+            } 
+
         }
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var obj = _taskService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            return PartialView(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            _taskService.Remove(id);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

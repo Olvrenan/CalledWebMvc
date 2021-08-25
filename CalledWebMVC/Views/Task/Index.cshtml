@@ -4,17 +4,16 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Tasks</h1>
-<hr />
+<br />
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Criar novo</a>
+    <a asp-action="Create" class="btn btn-primary">Criar nova tarefa</a>
 </p>
 
 <table class="table table-hover align-items-center">
     <thead>
 
-        <tr class="table-primary ">
+        <tr class="table-primary">
             <th scope="row">
                 @Html.DisplayNameFor(model => model.Id)
             </th>
@@ -33,25 +32,89 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td class="text-nowrap">
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td class="text-nowrap">
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Functionary.Name)
-            </td>
-            <th>
-                @Html.DisplayNameFor(model => item.TaskStatus)
-            </th>
-            <td class="text-nowrap">
-                <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Detalhes</a> |
-                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Excluir</a>
-            </td>
-        </tr>
+            <tr>
+                <td class="text-nowrap">
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td class="text-nowrap">
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Functionary.Name)
+                </td>
+                <th>
+                    @Html.DisplayNameFor(model => item.TaskStatus)
+                </th>
+                <td class="text-nowrap">
+                    <button class="btn btn-success btnDetails" data-value="@item.Id">Details</button>
+                    <button class="btn btn-danger btnDelete" data-value="@item.Id">Deletar</button>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
+
+
+
+
+<div class="modal fade" id="ModalDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="conteudomodalDetails"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="conteudomodalDelete"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $(".btnDetails").click(function () {
+
+                var id = $(this).data("value");
+
+                $("#conteudomodalDetails").load("/Task/Details/" + id,
+                    function () {
+                        $('#ModalDetails').modal("show");
+                    });
+            });
+        
+        
+            $(".btnDelete").click(function () {
+
+                var id = $(this).data("value");
+
+                $("#conteudomodalDelete").load("/Task/Delete/" + id,
+                    function () {
+                        $('#ModalDelete').modal("show");
+                    });
+            });
+        
+        });
+
+
+
+    </script>
+
+}
+
+
+
+
 

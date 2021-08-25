@@ -49,5 +49,11 @@ namespace CalledWebMVC.Services
                 throw new DbConcurrencyException(e.Message);
             }
         }
+        public void Remove(int id)
+        {
+            var obj = _context.Task.Find(id);
+            _context.Task.Remove(obj);
+            _context.SaveChanges(); 
+        }
     }
 }

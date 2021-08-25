@@ -4,56 +4,64 @@
     ViewData["Title"] = "Details";
 }
 
-<br />
-<h1>@ViewData["Title"]</h1>
-<br />
-<h4>Task</h4>
-<hr />
+<div class="modal-content">
 
-<p>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a>
-</p>
+    <div class="modal-header">
+        <h4>Tarefa: @Html.DisplayFor(model => model.Id) - @Html.DisplayFor(model => model.Title)</h4>
+    </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <p><strong>@Html.DisplayNameFor(model => model.Id)</strong></p>
-        <p>@Html.DisplayFor(model => model.Id)</p>
+    <div class="modal-body">
+
+        <dl class="dl-horizontal">
+            <dt class="">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Datecreated)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Datecreated)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateDone)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DateDone)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Functionary)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Functionary.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Functionary.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Functionary.Email)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Categoria)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Sprint)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Sprint)
+            </dd>
+        </dl>
+        <div class="modal-footer">
+            <div class="form-actions no-color">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                <button asp-action="Edit" type="button" class="btn btn-group-lg" data-dismiss="modal">Editar</button>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <p><strong>@Html.DisplayNameFor(model => model.TaskStatus)</strong></p>
-        <p>@Html.DisplayFor(model => model.TaskStatus)</p>
-    </div>
-    <div class="col-md-4">
-        <p><strong>@Html.DisplayNameFor(model => model.Title)</strong></p>
-        <p>@Html.DisplayFor(model => model.Title)</p>
-    </div>
-    <div class="col-md-4">
-        <p><strong>@Html.DisplayNameFor(model => model.Description)</strong></p>
-        <p>@Html.DisplayFor(model => model.Description)</p>
-    </div>
-    <div class="col-md-4">
-        <p><strong>@Html.DisplayNameFor(model => model.Datecreated)</strong></p>
-        <p>@Html.DisplayFor(model => model.Datecreated)</p>
-    </div>
-    <div class="col-md-4">
-        <p><strong>@Html.DisplayNameFor(model => model.DateDone)</strong></p>
-        <p>@Html.DisplayFor(model => model.DateDone)</p>
-    </div>
-    <div class="col-md-4">
-        <p><strong>@Html.DisplayNameFor(model => model.Functionary.Name)</strong></p>
-        <p>@Html.DisplayFor(model => model.Functionary.Name)</p>
-    </div>
-    <div class="col-md-4">
-        <p><strong>@Html.DisplayNameFor(model => model.Categoria)</strong></p>
-        <p>@Html.DisplayFor(model => model.Categoria)</p>
-    </div>
-    <div class="col-md-4">
-        <p><strong>@Html.DisplayNameFor(model => model.Sprint)</strong></p>
-        <p>@Html.DisplayFor(model => model.Sprint)</p>
-    </div>
+
 </div>
-<br />
-<div>
-    <a class="btn btn-primary" asp-action="Index">Back to List</a>
-</div>
-
