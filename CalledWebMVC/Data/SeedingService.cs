@@ -16,8 +16,9 @@ namespace CalledWebMVC.Data
 
         public void Seed()
         {
-            if (_context.Functionary.Any() || 
-                _context.Task.Any())
+            if (_context.Functionary.Any() ||
+                _context.Task.Any() ||
+                _context.Sprint.Any())
             {
                 return; //verifica se o DB esta populado
             }

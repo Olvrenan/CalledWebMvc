@@ -3,14 +3,16 @@ using System;
 using CalledWebMVC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CalledWebMVC.Migrations
 {
     [DbContext(typeof(CalledWebMvcContext))]
-    partial class CalledWebMvcContextModelSnapshot : ModelSnapshot
+    [Migration("20210901003053_Sprint01")]
+    partial class Sprint01
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,32 +56,6 @@ namespace CalledWebMVC.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Functionary");
-                });
-
-            modelBuilder.Entity("CalledWebMVC.Models.Sprint", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("BeginSprint")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("EndSprint")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("MetaSprint")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<int>("Task")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Sprint");
                 });
 
             modelBuilder.Entity("CalledWebMVC.Models.Task", b =>

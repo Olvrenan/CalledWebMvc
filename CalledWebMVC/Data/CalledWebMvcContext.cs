@@ -14,5 +14,8 @@ namespace CalledWebMVC.Models
         }
         public DbSet<Functionary> Functionary { get; set; }
         public DbSet<Task> Task { get; set; }
+        public DbSet<Sprint> Sprint { get; set; }
+
+
     }
 }
