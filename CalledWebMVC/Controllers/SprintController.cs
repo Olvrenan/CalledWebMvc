@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CalledWebMVC.Models;
+using CalledWebMVC.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,37 +11,49 @@ namespace CalledWebMVC.Controllers
 {
     public class SprintController : Controller
     {
+
+        private readonly SprintService _sprintService;
+        private readonly TaskService _taskService;
+
+        public SprintController( SprintService sprintService, TaskService taskService)
+        {
+            _sprintService = sprintService;
+            _taskService = taskService;
+        }
+
         // GET: SprintController
         public ActionResult Index()
         {
-            return View();
+            var list = _sprintService.FindAll();
+            return View(list);
         }
 
         // GET: SprintController/Details/5
-        public ActionResult Details(int id)
+
+        public async Task<IActionResult> Details(int? id)
         {
-            return View();
+
+            var obj =  await _taskService.FindBySprint(id.Value);
+
+            return View(obj);
         }
 
         // GET: SprintController/Create
         public ActionResult Create()
         {
+            
             return View();
         }
 
         // POST: SprintController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Sprint sprint)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+
+            _sprintService.Insert(sprint);
+            return RedirectToAction(nameof(Index));
+
         }
 
         // GET: SprintController/Edit/5

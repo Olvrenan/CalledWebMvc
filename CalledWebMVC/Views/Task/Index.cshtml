@@ -1,4 +1,5 @@
-﻿@model IEnumerable<CalledWebMVC.Models.Task>
+﻿@model IEnumerable<IGrouping<int, CalledWebMVC.Models.Task>>
+
 
 @{
     ViewData["Title"] = "Index";
@@ -10,109 +11,174 @@
     <a asp-action="Create" class="btn btn-primary">Criar nova tarefa</a>
 </p>
 
-<table class="table table-hover align-items-center">
-    <thead>
+@foreach (var item in Model)
+{
 
-        <tr class="table-primary">
-            <th scope="row">
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Functionary)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TaskStatus)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td class="text-nowrap">
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td class="text-nowrap">
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Functionary.Name)
-                </td>
-                <th>
-                    @Html.DisplayNameFor(model => item.TaskStatus)
-                </th>
-                <td class="text-nowrap">
-                    <button class="btn btn-success btnDetails" data-value="@item.Id">Details</button>
-                    <button class="btn btn-danger btnDelete" data-value="@item.Id">Deletar</button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Department @item.Key</h3>
+            <h3 class="panel-title">Sprint </h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr class="success">
+                        <th scope="row">
+                            Id
+                        </th>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Functionary
+                        </th>
+                        <th>
+                            TaskStatus
+                        </th>
+                        <th>
+                            Sprint
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in item)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => p.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => p.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => p.Functionary.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => p.TaskStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => p.Sprint.Name)
+                            </td>
+
+                        </tr>
+                    }
 
 
 
-
-<div class="modal fade" id="ModalDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div id="conteudomodalDetails"></div>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
-</div>
 
-<div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div id="conteudomodalDelete"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-@section scripts{
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-
-            $(".btnDetails").click(function () {
-
-                var id = $(this).data("value");
-
-                $("#conteudomodalDetails").load("/Task/Details/" + id,
-                    function () {
-                        $('#ModalDetails').modal("show");
-                    });
-            });
-        
-        
-            $(".btnDelete").click(function () {
-
-                var id = $(this).data("value");
-
-                $("#conteudomodalDelete").load("/Task/Delete/" + id,
-                    function () {
-                        $('#ModalDelete').modal("show");
-                    });
-            });
-        
-        });
-
-
-
-    </script>
 
 }
+
+
+
+    @*<table class="table table-hover align-items-center">
+            <thead>
+
+                <tr class="success">
+                    <th scope="row">
+                        Id
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Functionary
+                    </th>
+                    <th>
+                       TaskStatus
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td class="text-nowrap">
+                            @Html.DisplayFor(modelItem => item.Task.Id)
+                        </td>
+                        <td class="text-nowrap">
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Functionary.Name)
+                        </td>
+                        <th>
+                            @Html.DisplayNameFor(model => item.TaskStatus)
+                        </th>
+                        <td class="text-nowrap">
+                            <button class="btn btn-success btnDetails" data-value="@item.Id">Details</button>
+                            <button class="btn btn-danger btnDelete" data-value="@item.Id">Deletar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>*@
+
+
+
+
+    <div class="modal fade" id="ModalDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="conteudomodalDetails"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="conteudomodalDelete"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @section scripts{
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+
+                $(".btnDetails").click(function () {
+
+                    var id = $(this).data("value");
+
+                    $("#conteudomodalDetails").load("/Task/Details/" + id,
+                        function () {
+                            $('#ModalDetails').modal("show");
+                        });
+                });
+
+
+                $(".btnDelete").click(function () {
+
+                    var id = $(this).data("value");
+
+                    $("#conteudomodalDelete").load("/Task/Delete/" + id,
+                        function () {
+                            $('#ModalDelete').modal("show");
+                        });
+                });
+
+            });
+
+
+
+        </script>
+
+    }
 
 
 

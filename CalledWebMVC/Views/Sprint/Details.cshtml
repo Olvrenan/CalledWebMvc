@@ -1,0 +1,157 @@
+﻿@model IEnumerable<CalledWebMVC.Models.ViewModels.TaskFormViewModel>
+
+@{
+
+    ViewData["Title"] = "Details";
+    
+
+}
+
+<br />
+
+
+<h4>Sprint</h4>
+
+
+@*@foreach (var x in Model)
+{
+<h4>@Html.DisplayFor(modelItem => x.Name)</h4>
+<hr />
+<h6>@Html.DisplayNameFor(modelItem => x.MetaSprint): <small class="text-muted">@Html.DisplayFor(modelItem => x.MetaSprint)</small></h6>
+<h6>@Html.DisplayNameFor(modelItem => x.BeginSprint): <small class="text-muted">@Html.DisplayFor(modelItem => x.BeginSprint) </small>-
+    @Html.DisplayNameFor(modelItem => x.EndSprint): <small class="text-muted">@Html.DisplayFor(modelItem => x.EndSprint)</small></h6> 
+}*@
+
+<br />
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<table class="table table-hover align-items-center">
+    <thead>
+
+        <tr class="success">
+            <th scope="row">
+                Id
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Functionary
+            </th>
+            <th>
+                TaskStatus
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td class="text-nowrap">
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td class="text-nowrap">
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FunctionaryName)
+                </td>
+                <th>
+                    @Html.DisplayFor(model => item.TaskStatus)
+                </th>
+                <td class="text-nowrap">
+                    <a asp-controller="Task" asp-action="Edit" class=" btn btn-primary" asp-route-id="@item.Id">Editar</a> |
+                    <button class="btn btn-info btnDetails" data-value="@item.Id">Detalhes</button> |
+                    <button class="btn btn-danger btnDelete" data-value="@item.Id">Deletar</button>
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    @*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>*@ |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+<div class="modal fade" id="ModalDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="conteudomodalDetails"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="conteudomodalDelete"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="conteudomodalEdit"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $(".btnDetails").click(function () {
+
+                var id = $(this).data("value");
+
+                $("#conteudomodalDetails").load("/Task/Details/" + id,
+                    function () {
+                        $('#ModalDetails').modal("show");
+                    });
+            });
+
+
+            $(".btnDelete").click(function () {
+
+                var id = $(this).data("value");
+
+                $("#conteudomodalDelete").load("/Task/Delete/" + id,
+                    function () {
+                        $('#ModalDelete').modal("show");
+                    });
+            });
+
+            $(".btnEdit").click(function () {
+
+                var id = $(this).data("value");
+
+                $("#conteudomodalEdit").load("/Task/Edit/" + id,
+                    function () {
+                        $('#ModalEdit').modal("show");
+                    });
+            });
+
+        });
+
+
+
+    </script>
+
+}

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CalledWebMVC.Models.Sprint>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Sprints</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Criar novo</a>
+</p>
+<table class="table table-hover align-items-center">
+    <thead>
+        <tr class="table-primary ">
+            <th scope="row">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BeginSprint)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndSprint)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MetaSprint)
+            </th>
+          
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td class="text-nowrap">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="text-nowrap">
+                @Html.DisplayFor(modelItem => item.BeginSprint)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndSprint)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MetaSprint)
+            </td>
+            
+          
+
+            <td class="text-nowrap">
+
+                <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Detalhes</a> 
+
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -6,6 +6,7 @@ using CalledWebMVC.Services;
 using CalledWebMVC.Models;
 using CalledWebMVC.Models.ViewModels;
 using CalledWebMVC.Services.Exceptions;
+using System.Threading.Tasks;
 
 namespace CalledWebMVC.Controllers
 {
@@ -13,22 +14,26 @@ namespace CalledWebMVC.Controllers
     {
         private readonly TaskService _taskService;
         private readonly FunctionaryService _fuctionaryService;
+        private readonly SprintService _sprintService;
 
-        public TaskController(TaskService taskService, FunctionaryService fuctionaryService)
+        public TaskController(TaskService taskService, FunctionaryService fuctionaryService, SprintService sprintService)
         {
             _taskService = taskService;
             _fuctionaryService = fuctionaryService;
+            _sprintService = sprintService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var list = _taskService.FindAll(); 
+            var list = await _taskService.FindSprint(); 
             return View(list);
         }
         public IActionResult Create()
         {
+
             var funcionaries = _fuctionaryService.FindAll();
-            var viewModel = new TaskFormViewModel { Functionaries = funcionaries };
+            var sprints = _sprintService.FindAll();
+            var viewModel = new TaskFormViewModel { Functionaries = funcionaries, Sprints = sprints };
             return View(viewModel);
         }
 
@@ -48,13 +53,15 @@ namespace CalledWebMVC.Controllers
             return PartialView(obj);
         }
 
+       
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Task task)
+        public IActionResult Create(CalledWebMVC.Models.Task task)
         {
            
             _taskService.Insert(task);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Sprint", new { id = task.SprintId });
         }
         public IActionResult Edit(int? id)
         {
@@ -70,19 +77,21 @@ namespace CalledWebMVC.Controllers
             }
 
             List<Functionary> funcionaries = _fuctionaryService.FindAll();
-            TaskFormViewModel viewModel = new TaskFormViewModel { Task = obj, Functionaries = funcionaries };
+            List<Sprint> sprints = _sprintService.FindAll();
+            TaskFormViewModel viewModel = new TaskFormViewModel { Task = obj, Functionaries = funcionaries, Sprints = sprints };
             return View(viewModel); 
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Edit(int id, Task task)
+        public IActionResult Edit(int id, CalledWebMVC.Models.Task task)
         {
             if (!ModelState.IsValid)
             {
                 var funcionaries = _fuctionaryService.FindAll();
-                var viewModel = new TaskFormViewModel { Task = task, Functionaries = funcionaries };
+                var sprints = _sprintService.FindAll();
+                var viewModel = new TaskFormViewModel { Task = task, Functionaries = funcionaries, Sprints = sprints };
                 return View(viewModel);
             }
             if (id != task.Id)
@@ -92,7 +101,7 @@ namespace CalledWebMVC.Controllers
             try
             {
                 _taskService.Update(task);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Sprint", new { id = task.SprintId });
             }
             catch(ApplicationException e)
             {
@@ -119,8 +128,9 @@ namespace CalledWebMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
+            var obj = _taskService.FindById(id);
             _taskService.Remove(id);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Sprint", new { id = obj.SprintId });
         }
 
     }

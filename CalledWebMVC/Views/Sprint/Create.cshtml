@@ -1,0 +1,49 @@
+﻿@model CalledWebMVC.Models.Sprint
+
+<hr />
+<h4>Criar Nova Sprint</h4>
+<hr />
+<div class="row">
+    <div class="form-group col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="BeginSprint" class="control-label"></label>
+                    <input asp-for="BeginSprint" class="form-control" />
+                    <span asp-validation-for="BeginSprint" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="EndSprint" class="control-label"></label>
+                    <input asp-for="EndSprint" class="form-control" />
+                    <span asp-validation-for="EndSprint" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label asp-for="MetaSprint" class="control-label"></label>
+                    <input cols="40" asp-for="MetaSprint" class="form-control" />
+                    <span asp-validation-for="MetaSprint" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <input type="submit" value="Criar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-default">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

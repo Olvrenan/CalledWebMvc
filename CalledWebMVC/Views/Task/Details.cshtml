@@ -53,13 +53,12 @@
                 @Html.DisplayNameFor(model => model.Sprint)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Sprint)
+                @Html.DisplayFor(model => model.Sprint.Name)
             </dd>
         </dl>
         <div class="modal-footer">
             <div class="form-actions no-color">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                <button asp-action="Edit" type="button" class="btn btn-group-lg" data-dismiss="modal">Editar</button>
             </div>
         </div>
     </div>

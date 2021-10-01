@@ -12,7 +12,18 @@ namespace CalledWebMVC.Models
         public DateTime BeginSprint { get; set; }
         public DateTime EndSprint { get; set; }
         public string MetaSprint { get; set; }
-        public int Task { get; set; }
+        public ICollection<Task> Tasks { get; set; } = new List<Task>();
 
+
+        public Sprint() {}
+        public Sprint(int id, string name, DateTime beginSprint, DateTime endSprint, string metaSprint)
+        {
+            Id = id;
+            Name = name;
+            BeginSprint = beginSprint;
+            EndSprint = endSprint;
+            MetaSprint = metaSprint;
+           
+        }
     }
 }

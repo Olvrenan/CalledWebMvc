@@ -29,22 +29,24 @@
                 </div>
             </div>
             <div class="row">
-                
+
                 <div class="form-group col-md-4">
                     <label asp-for="Task.FunctionaryId" class="control-label"></label>
                     <select asp-for="Task.FunctionaryId" asp-items="@(new SelectList(Model.Functionaries,"Id","Name"))" class="form-control"></select>
                     <span asp-validation-for="Task.FunctionaryId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label asp-for="Task.SprintId" class="control-label"></label>
+                    <select asp-for="Task.SprintId" asp-items="@(new SelectList(Model.Sprints,"Id","Name"))" class="form-control"></select>
+                    <span asp-validation-for="Task.SprintId" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-4">
                     <label asp-for="Task.Categoria" class="control-label"></label>
                     <input asp-for="Task.Categoria" class="form-control" />
                     <span asp-validation-for="Task.FunctionaryId" class="text-danger"></span>
                 </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="Task.Sprint" class="control-label"></label>
-                    <input asp-for="Task.Sprint" class="form-control" />
-                    <span asp-validation-for="Task.Sprint" class="text-danger"></span>
-                </div>
+                
             </div>
             <div class="form-group col-md-12">
                 <label asp-for="Task.Description" class="control-label"></label>
@@ -54,7 +56,7 @@
 
             <div class="col-md-12">
                 <input type="submit" value="Criar" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-default">Cancelar</a>
+                <a asp-controller="Sprint" asp-action="Index" class="btn btn-default">Cancelar</a>
             </div>
         </form>
     </div>
