@@ -38,11 +38,6 @@ namespace CalledWebMVC.Models
         [NotMapped]
         public string FunctionaryName { get; set; }
 
-        [NotMapped]
-        public int TaskStatusString { get; set; }
-
-
-
         //public virtual IList<Task> Tasks { get; set; }
 
         public Task()
@@ -55,7 +50,7 @@ namespace CalledWebMVC.Models
             DateDone = dateDone;
         }
 
-       
+        
        
 
 

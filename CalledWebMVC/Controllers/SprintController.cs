@@ -22,9 +22,10 @@ namespace CalledWebMVC.Controllers
         }
 
         // GET: SprintController
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var list = _sprintService.FindAll();
+            
+            var list = await  _sprintService.FindActiveSprints();
             return View(list);
         }
 

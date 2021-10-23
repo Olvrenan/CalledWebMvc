@@ -15,9 +15,19 @@ namespace CalledWebMVC.Services
         {
             _context = context;
         }
-        public List<Sprint> FindAll()
+        public  List<Sprint> FindAll()
         {
+
             return _context.Sprint.OrderBy(x=> x.Name).ToList();
+        }
+        public async Task<List<Sprint>> FindActiveSprints()
+        {
+
+            //var data = await (from t1 in _context.Sprint
+            //                  select new Models.Sprint { }
+            //                 ).Where(x => x.EndSprint < DateTime.Today).ToListAsync();
+            //return data;
+            return await _context.Sprint.Where(x => x.EndSprint >= DateTime.Today).ToListAsync();
         }
         public void Insert(Sprint obj)
         {

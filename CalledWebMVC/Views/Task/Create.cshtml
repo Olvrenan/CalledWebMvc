@@ -4,60 +4,68 @@
     ViewData["Title"] = "Create";
 }
 
-<hr />
+<br />
 <h4>Criar Nova Tarefa</h4>
 <hr />
 <div class="row">
     <div class="form-group col-md-12">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
             <div class="row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-12">
                     <label asp-for="Task.Title" class="control-label"></label>
                     <input asp-for="Task.Title" class="form-control" />
                     <span asp-validation-for="Task.Title" class="text-danger"></span>
                 </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="Task.Datecreated" class="control-label"></label>
-                    <input asp-for="Task.Datecreated" class="form-control" />
-                    <span asp-validation-for="Task.Datecreated" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="Task.DateDone" class="control-label"></label>
-                    <input asp-for="Task.DateDone" class="form-control" />
-                    <span asp-validation-for="Task.DateDone" class="text-danger"></span>
-                </div>
             </div>
-            <div class="row">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label asp-for="Task.TaskStatus" class="control-label"></label>
+                        <select asp-for="Task.TaskStatus" asp-items="Html.GetEnumSelectList <CalledWebMVC.Models.Enums.TaskStatus>()" class="form-control"></select>
+                        <span asp-validation-for="Task.TaskStatus" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="Task.Datecreated" class="control-label"></label>
+                        <input asp-for="Task.Datecreated" class="form-control" />
+                        <span asp-validation-for="Task.Datecreated" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="Task.DateDone" class="control-label"></label>
+                        <input asp-for="Task.DateDone" class="form-control" />
+                        <span asp-validation-for="Task.DateDone" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
 
-                <div class="form-group col-md-4">
-                    <label asp-for="Task.FunctionaryId" class="control-label"></label>
-                    <select asp-for="Task.FunctionaryId" asp-items="@(new SelectList(Model.Functionaries,"Id","Name"))" class="form-control"></select>
-                    <span asp-validation-for="Task.FunctionaryId" class="text-danger"></span>
+                    <div class="form-group col-md-4">
+                        <label asp-for="Task.FunctionaryId" class="control-label"></label>
+                        <select asp-for="Task.FunctionaryId" asp-items="@(new SelectList(Model.Functionaries,"Id","Name"))" class="form-control"></select>
+                        <span asp-validation-for="Task.FunctionaryId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="Task.SprintId" class="control-label"></label>
+                        <select asp-for="Task.SprintId" asp-items="@(new SelectList(Model.Sprints,"Id","Name"))" class="form-control"></select>
+                        <span asp-validation-for="Task.SprintId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="Task.Categoria" class="control-label"></label>
+                        <input asp-for="Task.Categoria" class="form-control" />
+                        <span asp-validation-for="Task.FunctionaryId" class="text-danger"></span>
+                    </div>
                 </div>
 
-                <div class="form-group col-md-4">
-                    <label asp-for="Task.SprintId" class="control-label"></label>
-                    <select asp-for="Task.SprintId" asp-items="@(new SelectList(Model.Sprints,"Id","Name"))" class="form-control"></select>
-                    <span asp-validation-for="Task.SprintId" class="text-danger"></span>
+                <div class="form-group col-md-12">
+                    <label asp-for="Task.Description" class="control-label"></label>
+                    <textarea rows="8" cols="40" asp-for="Task.Description" class="form-control"> </textarea>
+                    <span asp-validation-for="Task.Description" class="text-danger"></span>
                 </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="Task.Categoria" class="control-label"></label>
-                    <input asp-for="Task.Categoria" class="form-control" />
-                    <span asp-validation-for="Task.FunctionaryId" class="text-danger"></span>
-                </div>
-                
-            </div>
-            <div class="form-group col-md-12">
-                <label asp-for="Task.Description" class="control-label"></label>
-                <textarea rows="8" cols="40" asp-for="Task.Description" class="form-control"> </textarea>
-                <span asp-validation-for="Task.Description" class="text-danger"></span>
-            </div>
 
-            <div class="col-md-12">
-                <input type="submit" value="Criar" class="btn btn-primary" />
-                <a asp-controller="Sprint" asp-action="Index" class="btn btn-default">Cancelar</a>
-            </div>
+                <div class="col-md-12">
+                    <input type="submit" value="Criar" class="btn btn-primary" />
+                    <a asp-controller="Sprint" asp-action="Index" class="btn btn-default">Cancelar</a>
+                </div>
         </form>
     </div>
 </div>

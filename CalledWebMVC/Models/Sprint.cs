@@ -13,6 +13,9 @@ namespace CalledWebMVC.Models
         public DateTime EndSprint { get; set; }
         public string MetaSprint { get; set; }
         public ICollection<Task> Tasks { get; set; } = new List<Task>();
+       
+        //[NotMapped]
+        //public bool status { get; set; }
 
 
         public Sprint() {}
@@ -25,5 +28,14 @@ namespace CalledWebMVC.Models
             MetaSprint = metaSprint;
            
         }
+
+        //public bool StatusSprint(bool statusSprint)
+        //{
+        //    if (DateTime.Today >= EndSprint)
+        //    {
+        //        return statusSprint = false;
+        //    }
+        //    else return statusSprint = true;
+        //}
     }
 }
