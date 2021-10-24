@@ -3,14 +3,16 @@ using System;
 using CalledWebMVC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CalledWebMVC.Migrations
 {
     [DbContext(typeof(CalledWebMvcContext))]
-    partial class CalledWebMvcContextModelSnapshot : ModelSnapshot
+    [Migration("20211024142602_Ajudantes")]
+    partial class Ajudantes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,11 +87,11 @@ namespace CalledWebMVC.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Ajudante1")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<int>("Ajudante1")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Ajudante2")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<int>("Ajudante2")
+                        .HasColumnType("int");
 
                     b.Property<string>("Categoria")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");

@@ -1,10 +1,9 @@
 ﻿using CalledWebMVC.Models;
 using CalledWebMVC.Services;
+using CalledWebMVC.Services.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CalledWebMVC.Controllers
@@ -15,7 +14,7 @@ namespace CalledWebMVC.Controllers
         private readonly SprintService _sprintService;
         private readonly TaskService _taskService;
 
-        public SprintController( SprintService sprintService, TaskService taskService)
+        public SprintController(SprintService sprintService, TaskService taskService)
         {
             _sprintService = sprintService;
             _taskService = taskService;
@@ -24,8 +23,15 @@ namespace CalledWebMVC.Controllers
         // GET: SprintController
         public async Task<ActionResult> Index()
         {
-            
-            var list = await  _sprintService.FindActiveSprints();
+
+            var list = await _sprintService.FindActiveSprints();
+            return View(list);
+        }
+        // GET: SprintController
+        public async Task<ActionResult> Concluidas()
+        {
+
+            var list = await _sprintService.FindDoneSprints();
             return View(list);
         }
 
@@ -34,7 +40,7 @@ namespace CalledWebMVC.Controllers
         public async Task<IActionResult> Details(int? id)
         {
 
-            var obj =  await _taskService.FindBySprint(id.Value);
+            var obj = await _taskService.FindBySprint(id.Value);
 
             return View(obj);
         }
@@ -42,7 +48,7 @@ namespace CalledWebMVC.Controllers
         // GET: SprintController/Create
         public ActionResult Create()
         {
-            
+
             return View();
         }
 
@@ -58,24 +64,40 @@ namespace CalledWebMVC.Controllers
         }
 
         // GET: SprintController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var Sprint = _sprintService.FindById(id.Value);
+            if (Sprint == null)
+            {
+                return NotFound();
+            }
+
+            return View(Sprint);
         }
 
-        // POST: SprintController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+
+        public IActionResult Edit(int id, Sprint Sprint)
         {
+            if (id != Sprint.Id)
+            {
+                return NotFound();
+            }
             try
             {
+                _sprintService.Update(Sprint);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (ApplicationException e)
             {
-                return View();
+                throw new DbConcurrencyException(e.Message);
             }
+
         }
 
         // GET: SprintController/Delete/5

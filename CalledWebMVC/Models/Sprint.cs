@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace CalledWebMVC.Models
 {
     public class Sprint
     {
         public int Id { get; set; }
+
+        [Display(Name= "Nome")]
         public string Name { get; set; }
+        [Display(Name = "Data Inicial")]
         public DateTime BeginSprint { get; set; }
+        [Display(Name = "Data Final")]
         public DateTime EndSprint { get; set; }
+        [Display(Name = "Sprint Goal")]
         public string MetaSprint { get; set; }
         public ICollection<Task> Tasks { get; set; } = new List<Task>();
        
-        //[NotMapped]
-        //public bool status { get; set; }
+       
 
 
         public Sprint() {}

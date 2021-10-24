@@ -63,6 +63,36 @@ namespace CalledWebMVC.Services
             //return await _context.Task.Include(x => x.Sprint).Where(x => x.SprintId == id).ToListAsync();
         }
 
+
+        public async Task<IEnumerable<CalledWebMVC.Models.ViewModels.TaskFormViewModel>> FindByTask(int id)
+        {
+
+
+            var data = await (from t1 in _context.Functionary
+                              join t2 in _context.Task on t1.Id equals t2.FunctionaryId
+                              join t3 in _context.Sprint on t2.SprintId equals t3.Id
+                              orderby t2.Id
+                              select new CalledWebMVC.Models.ViewModels.TaskFormViewModel
+                              {
+                                  Title = t2.Title,
+                                  Id = t2.Id,
+                                  TaskStatus = t2.TaskStatus,
+                                  Categoria = t2.Categoria,
+                                  FunctionaryName = t1.Name,
+                                  SprintId = t2.SprintId,
+                                  Name = t3.Name,
+                                  MetaSprint = t3.MetaSprint,
+                                  BeginSprint = t3.BeginSprint,
+                                  EndSprint = t3.EndSprint
+
+                              }).Where(x => x.SprintId == id).ToListAsync();
+
+
+            return data;
+
+            //return await _context.Task.Include(x => x.Sprint).Where(x => x.SprintId == id).ToListAsync();
+        }
+
         public void Insert(CalledWebMVC.Models.Task obj)
         {
             _context.Add(obj);

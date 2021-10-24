@@ -1,11 +1,12 @@
 ﻿@model CalledWebMVC.Models.Sprint
 
 <br />
-<h4>Criar Nova Sprint</h4>
+<h4>Editar Sprint</h4>
 <hr />
 <div class="row">
     <div class="form-group col-md-12">
-        <form asp-action="Create">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Id" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row">
                 <div class="form-group col-md-4">
@@ -33,8 +34,8 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <input type="submit" value="Criar" class="btn btn-primary" />
-                
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-default">Cancelar</a>
             </div>
         </form>
     </div>

@@ -4,11 +4,12 @@ namespace CalledWebMVC.Models.Enums
 {
     public enum TaskStatus : int
     {
-        Backlog = 0,
+        [Display(Name = "A fazer")]
+        Todo = 0,
 
-        [Display(Name = "In Progress")]
+        [Display(Name = "Em andamento")]
         InProgress = 1,
         Block = 2,
-        Done = 3
+        Concluido = 3
     }
 }

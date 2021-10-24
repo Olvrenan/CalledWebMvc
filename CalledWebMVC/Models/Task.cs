@@ -24,10 +24,15 @@ namespace CalledWebMVC.Models
 
         [Display(Name = "Funcionário")]
         public Functionary Functionary { get; set; }
+
+      
+        [Display(Name = "Funcionário")]
         public int FunctionaryId { get; set; }
 
         public Sprint Sprint { get; set; }
 
+        [Display(Name = "Sprint")]
+        
         public int SprintId { get; set; }
 
         public string Categoria { get; set; }
@@ -35,10 +40,9 @@ namespace CalledWebMVC.Models
         [Display(Name = "Status")]
         public TaskStatus TaskStatus { get; set; }
 
-        [NotMapped]
-        public string FunctionaryName { get; set; }
-
-        //public virtual IList<Task> Tasks { get; set; }
+        public string Ajudante1 { get; set; }
+        
+        public string Ajudante2 { get; set; }
 
         public Task()
         {
