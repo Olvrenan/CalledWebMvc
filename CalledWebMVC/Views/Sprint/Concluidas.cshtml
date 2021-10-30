@@ -4,12 +4,12 @@
     ViewData["Title"] = "Index";
 }
 <br />
-<h2>Sprints</h2>
+<h2>Sprints Concluidas</h2>
 
 <p class="dropright">
     <a asp-action="Create" class="btn btn-primary">Criar novo</a>
 </p>
-<table class="table table-hover align-items-center">
+<table id="myTable" class="table table-hover align-items-center">
     <thead>
         <tr class="table-primary ">
             <th scope="row">
@@ -57,3 +57,18 @@
         }
     </tbody>
 </table>
+
+
+@section Scripts {
+
+    <script>
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+            }
+        });
+    });
+
+    </script>
+}

@@ -39,7 +39,7 @@ namespace CalledWebMVC.Controllers
 
         public async Task<IActionResult> Details(int? id)
         {
-
+            
             var obj = await _taskService.FindBySprint(id.Value);
 
             return View(obj);

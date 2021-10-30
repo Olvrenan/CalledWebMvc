@@ -83,7 +83,8 @@ namespace CalledWebMVC.Services
                                   Name = t3.Name,
                                   MetaSprint = t3.MetaSprint,
                                   BeginSprint = t3.BeginSprint,
-                                  EndSprint = t3.EndSprint
+                                  EndSprint = t3.EndSprint,
+                                  DateDone = t2.DateDone
 
                               }).Where(x => x.SprintId == id).ToListAsync();
 

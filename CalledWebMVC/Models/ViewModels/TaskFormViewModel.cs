@@ -19,5 +19,6 @@ namespace CalledWebMVC.Models.ViewModels
         public DateTime BeginSprint { get; internal set; }
         public string MetaSprint { get; internal set; }
         public DateTime EndSprint { get; internal set; }
+        public DateTime DateDone { get;  set; }
     }
 }
