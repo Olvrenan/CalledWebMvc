@@ -7,6 +7,7 @@ using CalledWebMVC.Models;
 using CalledWebMVC.Models.ViewModels;
 using CalledWebMVC.Services.Exceptions;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CalledWebMVC.Controllers
 {
@@ -23,11 +24,15 @@ namespace CalledWebMVC.Controllers
             _sprintService = sprintService;
         }
 
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var list = await _taskService.FindSprint(); 
             return View(list);
         }
+
+
+
         public IActionResult Create()
         {
 
@@ -37,6 +42,7 @@ namespace CalledWebMVC.Controllers
             return View(viewModel);
         }
 
+        [Authorize]
         public IActionResult Details(int? id)
         {
 
@@ -53,16 +59,18 @@ namespace CalledWebMVC.Controllers
             return PartialView(obj);
         }
 
-       
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(CalledWebMVC.Models.Task task)
         {
-           
+              
             _taskService.Insert(task);
             return RedirectToAction("Details", "Sprint", new { id = task.SprintId });
         }
+
+        [Authorize]
         public IActionResult Edit(int? id)
         {
   
@@ -82,6 +90,8 @@ namespace CalledWebMVC.Controllers
             return View(viewModel); 
         }
 
+
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -109,6 +119,8 @@ namespace CalledWebMVC.Controllers
             } 
 
         }
+
+        [Authorize]
         public IActionResult Delete(int? id)
         {
             if (id == null)
@@ -124,6 +136,7 @@ namespace CalledWebMVC.Controllers
             return PartialView(obj);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)

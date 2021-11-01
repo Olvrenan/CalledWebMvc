@@ -3,18 +3,20 @@ using System;
 using CalledWebMVC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CalledWebMVC.Migrations
 {
     [DbContext(typeof(CalledWebMvcContext))]
-    partial class CalledWebMvcContextModelSnapshot : ModelSnapshot
+    [Migration("20211030165350_NparaN")]
+    partial class NparaN
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.20")
+                .HasAnnotation("ProductVersion", "3.1.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("CalledWebMVC.Models.FuncionaryTask", b =>
@@ -66,31 +68,6 @@ namespace CalledWebMVC.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Functionary");
-                });
-
-            modelBuilder.Entity("CalledWebMVC.Models.InformacaoLogin", b =>
-                {
-                    b.Property<int>("InformacaoLoginId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Data")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("EnderecoIP")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Horario")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
-
-                    b.HasKey("InformacaoLoginId");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("InformacaoLogin");
                 });
 
             modelBuilder.Entity("CalledWebMVC.Models.Sprint", b =>
@@ -155,26 +132,6 @@ namespace CalledWebMVC.Migrations
                     b.ToTable("Task");
                 });
 
-            modelBuilder.Entity("CalledWebMVC.Models.Usuario", b =>
-                {
-                    b.Property<int>("UsuarioId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("UsuarioId");
-
-                    b.ToTable("Usuario");
-                });
-
             modelBuilder.Entity("CalledWebMVC.Models.FuncionaryTask", b =>
                 {
                     b.HasOne("CalledWebMVC.Models.Functionary", "Functionary")
@@ -186,15 +143,6 @@ namespace CalledWebMVC.Migrations
                     b.HasOne("CalledWebMVC.Models.Task", "Task")
                         .WithMany("FuncionaryTasks")
                         .HasForeignKey("TaskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CalledWebMVC.Models.InformacaoLogin", b =>
-                {
-                    b.HasOne("CalledWebMVC.Models.Usuario", "Usuario")
-                        .WithMany("InformacoesLogin")
-                        .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

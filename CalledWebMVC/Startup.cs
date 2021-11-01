@@ -11,7 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CalledWebMVC.Services; 
+using CalledWebMVC.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CalledWebMVC
 {
@@ -33,12 +36,20 @@ namespace CalledWebMVC
                       options.UseMySql(Configuration.GetConnectionString("CalledWebMvcContext"), builder =>
                                   builder.MigrationsAssembly("CalledWebMVC")));
 
+            services.AddSession();
 
             services.AddScoped<SeedingService>();
             services.AddScoped<FunctionaryService>();
             services.AddScoped<TaskService>();
             services.AddScoped<SprintService>();
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(opcoes =>
+                {
+                    opcoes.LoginPath = "/Usuarios/Login";
+                });
+
+       
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,8 +66,12 @@ namespace CalledWebMVC
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
+
+            app.UseAuthentication();
+            app.UseSession();
             app.UseStaticFiles();
+
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -66,7 +81,7 @@ namespace CalledWebMVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Usuario}/{action=Registro}/{id?}");
             });
         }
     }

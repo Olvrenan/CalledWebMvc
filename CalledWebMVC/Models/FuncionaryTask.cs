@@ -12,7 +12,8 @@ namespace CalledWebMVC.Models
         public int TaskId { get; set; }
         public Task Task { get; set; }
 
-        public Functionary Functionary { get; set; }
         public int FunctionaryId { get; set; }
+        public Functionary Functionary { get; set; }
+       
     }
 }

@@ -48,7 +48,8 @@ namespace CalledWebMVC.Models
         public ContractTypes TypeContract { get; set; }
 
         //Lista de tarefas atribuidas 
-        public string Task { get; set; }
+       
+        public ICollection<FuncionaryTask> FuncionaryTasks { get; set; }
 
         public Functionary()
         {
@@ -74,7 +75,7 @@ namespace CalledWebMVC.Models
             Phone = phone;
             Occupation = occupation;
             TypeContract = typeContract;
-            Task = task;
+           
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CalledWebMVC.Models;
 using CalledWebMVC.Services;
 using CalledWebMVC.Services.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,20 +15,22 @@ namespace CalledWebMVC.Controllers
         private readonly SprintService _sprintService;
         private readonly TaskService _taskService;
 
+        
         public SprintController(SprintService sprintService, TaskService taskService)
         {
             _sprintService = sprintService;
             _taskService = taskService;
         }
 
-        // GET: SprintController
+        [Authorize]
         public async Task<ActionResult> Index()
         {
 
             var list = await _sprintService.FindActiveSprints();
             return View(list);
         }
-        // GET: SprintController
+
+        [Authorize]
         public async Task<ActionResult> Concluidas()
         {
 
@@ -35,24 +38,23 @@ namespace CalledWebMVC.Controllers
             return View(list);
         }
 
-        // GET: SprintController/Details/5
-
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
-            
+
             var obj = await _taskService.FindBySprint(id.Value);
 
             return View(obj);
         }
 
-        // GET: SprintController/Create
+        [Authorize]
         public ActionResult Create()
         {
 
             return View();
         }
 
-        // POST: SprintController/Create
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Sprint sprint)
@@ -63,7 +65,7 @@ namespace CalledWebMVC.Controllers
 
         }
 
-        // GET: SprintController/Edit/5
+        [Authorize]
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +81,7 @@ namespace CalledWebMVC.Controllers
             return View(Sprint);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -100,13 +103,13 @@ namespace CalledWebMVC.Controllers
 
         }
 
-        // GET: SprintController/Delete/5
+        [Authorize]
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: SprintController/Delete/5
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

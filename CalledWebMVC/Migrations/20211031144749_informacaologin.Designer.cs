@@ -3,14 +3,16 @@ using System;
 using CalledWebMVC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CalledWebMVC.Migrations
 {
     [DbContext(typeof(CalledWebMvcContext))]
-    partial class CalledWebMvcContextModelSnapshot : ModelSnapshot
+    [Migration("20211031144749_informacaologin")]
+    partial class informacaologin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,6 +167,9 @@ namespace CalledWebMVC.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
+
+                    b.Property<bool>("LembrarMe")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Senha")
                         .IsRequired()

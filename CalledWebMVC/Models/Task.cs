@@ -22,27 +22,29 @@ namespace CalledWebMVC.Models
         [Display(Name = "Data de Entrega")]
         public DateTime DateDone { get; set; }
 
-        [Display(Name = "Funcionário")]
-        public Functionary Functionary { get; set; }
-
-      
-        [Display(Name = "Funcionário")]
-        public int FunctionaryId { get; set; }
-
         public Sprint Sprint { get; set; }
 
         [Display(Name = "Sprint")]
         
         public int SprintId { get; set; }
 
+
+        [Display(Name = "Funcionário")]
+        public Functionary Functionary { get; set; }
+
+
+        [Display(Name = "Funcionário")]
+        public int FunctionaryId { get; set; }
+
         public string Categoria { get; set; }
 
         [Display(Name = "Status")]
         public TaskStatus TaskStatus { get; set; }
 
-        public string Ajudante1 { get; set; }
-        
-        public string Ajudante2 { get; set; }
+        public ICollection<FuncionaryTask> FuncionaryTasks { get; set; }
+
+
+
 
         public Task()
         {

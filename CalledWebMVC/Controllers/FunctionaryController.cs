@@ -1,6 +1,7 @@
 ﻿using CalledWebMVC.Models;
 using CalledWebMVC.Services;
 using CalledWebMVC.Services.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -15,11 +16,13 @@ namespace CalledWebMVC.Controllers
         {
             _FunctionaryService = FunctionaryService;
         }
+        [Authorize]
         public IActionResult Index()
         {
             var list = _FunctionaryService.FindAll();
             return View(list);
         }
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -27,12 +30,14 @@ namespace CalledWebMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult Create(Functionary Functionary)
         {
             _FunctionaryService.Insert(Functionary);
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
         public IActionResult Delete(int? id)
         {
             if (id == null)
@@ -48,6 +53,7 @@ namespace CalledWebMVC.Controllers
             return View(obj);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
@@ -56,6 +62,7 @@ namespace CalledWebMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
         public IActionResult Details(int? id)
         {
             if (id == null)
@@ -70,6 +77,8 @@ namespace CalledWebMVC.Controllers
 
             return View(obj);
         }
+
+        [Authorize]
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,6 +97,7 @@ namespace CalledWebMVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
+        [Authorize]
         public IActionResult Edit(int id, Functionary Functionary)
         {
             if (id != Functionary.Id)

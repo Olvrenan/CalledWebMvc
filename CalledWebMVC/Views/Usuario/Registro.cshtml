@@ -1,0 +1,39 @@
+﻿@model CalledWebMVC.Models.Usuario
+
+@{
+    ViewData["Title"] = "Registro";
+}
+<br/>
+<h1>Registro</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Registro">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="Email">Email</label>
+                <div class="col-md-10">
+                    <input asp-for="Email" id="Email" type="email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="Senha">Senha</label>
+                <div class="col-md-10">
+                    <input asp-for="Senha" id="Senha" type="password" class="form-control" />
+                    <span asp-validation-for="Senha" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Registar" class="btn btn-primary" /> &nbsp;
+                <a asp-action="Login" asp-controller="Usuario">Já sou registrado</a>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
