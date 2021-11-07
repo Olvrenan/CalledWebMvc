@@ -18,7 +18,8 @@ namespace CalledWebMVC.Data
         {
             if (_context.Functionary.Any() ||
                 _context.Task.Any() ||
-                _context.Sprint.Any())
+                _context.Sprint.Any() ||
+                    _context.Projeto.Any())
             {
                 return; //verifica se o DB esta populado
             }
@@ -31,17 +32,21 @@ namespace CalledWebMVC.Data
             Functionary f6 = new Functionary(6, "Martha Red", "123.456.789-3", new DateTime(2000, 1, 9), "martha@gmail.com", "9444-8888", Occupations.Armador, ContractTypes.Funcionario);
             Functionary f7 = new Functionary(7, "Donald Blue", "123.456.789-3", new DateTime(1988, 1, 15), "donald@gmail.com", "9666-8888", Occupations.Carpinteiro, ContractTypes.Colaborador);
 
-            Sprint s1 = new Sprint(1, "Sprint 1", new DateTime(2021, 03, 01), new DateTime(2021, 03, 15), "Concluir todas as atividades");
-            Sprint s2 = new Sprint(2, "Sprint 2", new DateTime(2021, 03, 18), new DateTime(2021, 03, 30), "Concluir todas as atividades");
+            Sprint s1 = new Sprint(1, "Sprint 1", new DateTime(2021, 03, 01), new DateTime(2021, 03, 15), "Concluir todas as atividades",1);
+            Sprint s2 = new Sprint(2, "Sprint 2", new DateTime(2021, 03, 18), new DateTime(2021, 03, 30), "Concluir todas as atividades",2);
             //Sprint s3 = new Sprint(3, "Sprint 3", new DateTime(2021, 04, 01), new DateTime(2021, 03, 15), "Concluir todas as atividades");
             //Sprint s4 = new Sprint(4, "Sprint 4", new DateTime(2021, 04, 18), new DateTime(2021, 03, 30), "Concluir todas as atividades");
             //Sprint s5 = new Sprint(5, "Sprint 5", new DateTime(2021, 05, 01), new DateTime(2021, 03, 15), "Concluir todas as atividades");
             //Sprint s6 = new Sprint(6, "Sprint 6", new DateTime(2021, 05, 18), new DateTime(2021, 03, 30), "Concluir todas as atividades");
             //Sprint s7 = new Sprint(7, "Sprint 7", new DateTime(2021, 06, 01), new DateTime(2021, 03, 15), "Concluir todas as atividades");
 
+            Projeto p1 = new Projeto(1,"Casa verde", "Projeto referente a construção de uma casa simples", new DateTime(2021 / 06 / 2019), Status.InProgress);
+            Projeto p2 = new Projeto(2, "Predio 44", "Projeto referente a construção de um predio de 4 andares", new DateTime(2021 / 01 / 01), Status.Concluido);
 
             _context.Functionary.AddRange(f1, f2, f3, f4, f5, f6, f7);
             _context.Sprint.AddRange(s1, s2/* s3, s4, s5, s6, s7*/);
+            _context.Projeto.AddRange(p1, p2);
+
 
             _context.SaveChanges();
         }

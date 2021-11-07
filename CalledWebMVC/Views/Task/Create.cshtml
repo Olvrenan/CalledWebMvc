@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="form-group col-md-4">
                     <label asp-for="Task.TaskStatus" class="control-label"></label>
-                    <select asp-for="Task.TaskStatus" asp-items="Html.GetEnumSelectList <CalledWebMVC.Models.Enums.TaskStatus>()" class="form-control"></select>
+                    <select asp-for="Task.TaskStatus" asp-items="Html.GetEnumSelectList <CalledWebMVC.Models.Enums.Status>()" class="form-control"></select>
                     <span asp-validation-for="Task.TaskStatus" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-4">
@@ -47,7 +47,6 @@
                     <label asp-for="Task.SprintId" class="control-label"></label>
                     <select asp-for="Task.SprintId" asp-items="@(new SelectList(Model.Sprints,"Id","Name"))" class="form-control">
                         <option selected="">Backlog</option>
-
                     </select>
                     <span asp-validation-for="Task.SprintId" class="text-danger"></span>
                 </div>

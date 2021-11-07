@@ -29,15 +29,13 @@ namespace CalledWebMVC.Services
         public CalledWebMVC.Models.Task FindById(int id)
         {
             return _context.Task
-                .Include(obj => obj.Functionary)
+                //.Include(obj => obj.Functionary)
                 .Include(obj => obj.Sprint)
                 .FirstOrDefault(obj => obj.Id == id);
         }
 
         public async Task<IEnumerable<CalledWebMVC.Models.ViewModels.TaskFormViewModel>> FindBySprint(int id)
         {
-
-
             var data = await (from t1 in _context.Functionary
                               join t2 in _context.Task on t1.Id equals t2.FunctionaryId
                               join t3 in _context.Sprint on t2.SprintId equals t3.Id
@@ -57,42 +55,22 @@ namespace CalledWebMVC.Services
 
                               }).Where(x => x.SprintId == id).ToListAsync();
 
-
             return data;
 
             //return await _context.Task.Include(x => x.Sprint).Where(x => x.SprintId == id).ToListAsync();
         }
 
-
-        public async Task<IEnumerable<CalledWebMVC.Models.ViewModels.TaskFormViewModel>> FindByTask(int id)
-        {
-
-
-            var data = await (from t1 in _context.Functionary
-                              join t2 in _context.Task on t1.Id equals t2.FunctionaryId
-                              join t3 in _context.Sprint on t2.SprintId equals t3.Id
-                              orderby t2.Id
-                              select new CalledWebMVC.Models.ViewModels.TaskFormViewModel
-                              {
-                                  Title = t2.Title,
-                                  Id = t2.Id,
-                                  TaskStatus = t2.TaskStatus,
-                                  Categoria = t2.Categoria,
-                                  FunctionaryName = t1.Name,
-                                  SprintId = t2.SprintId,
-                                  Name = t3.Name,
-                                  MetaSprint = t3.MetaSprint,
-                                  BeginSprint = t3.BeginSprint,
-                                  EndSprint = t3.EndSprint,
-                                  DateDone = t2.DateDone
-
-                              }).Where(x => x.SprintId == id).ToListAsync();
-
-
-            return data;
-
-            //return await _context.Task.Include(x => x.Sprint).Where(x => x.SprintId == id).ToListAsync();
-        }
+        //public void GetQueryUm()
+        //{
+        //    var data = await (from t1 in _context.Sprint
+        //                      join t2 in _context.Task on t1.Id equals t2.SprintId
+        //                      join t3 in _context.Functionary on t2.FunctionaryId equals t3.Id 
+        //                      orderby t1.Id
+        //                      select new {
+                                
+        //                      }
+        //                      ).Where(x => x.TaskStatus == 3).ToListAsync();
+        //}
 
         public void Insert(CalledWebMVC.Models.Task obj)
         {

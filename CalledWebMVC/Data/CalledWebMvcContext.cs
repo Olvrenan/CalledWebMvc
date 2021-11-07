@@ -19,12 +19,16 @@ namespace CalledWebMVC.Models
         public DbSet<FuncionaryTask> FuncionaryTasks { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<InformacaoLogin> InformacaoLogin { get; set; }
+        public DbSet<Projeto> Projeto { get; set; }
 
 
+        //taskfuncionario relacionamento n para n 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<FuncionaryTask>().HasKey(sc => new { sc.FunctionaryId, sc.TaskId });
         }
+
+
 
 
         

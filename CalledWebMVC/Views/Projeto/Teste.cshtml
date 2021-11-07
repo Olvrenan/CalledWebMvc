@@ -1,0 +1,23 @@
+﻿@model IEnumerable<CalledWebMVC.Models.ViewModels.SprintFormViewModel>
+
+@foreach (var item in Model)
+{
+    <div class="accordion" id="painelTarefas">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                   
+                    <div class="col-2">
+                        <a asp-action="Task" asp-route="Create" class="btn btn-sm btn-outline-dark">Nova Tarefa</a>
+                    </div>
+                </div>
+            </div>
+
+            <div   class="collapse show" data-parent="#painelTarefas">
+                <div class="card-body">
+                    TESTE
+                </div>
+            </div>
+        </div>
+    </div>
+}

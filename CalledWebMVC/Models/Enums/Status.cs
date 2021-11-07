@@ -2,7 +2,7 @@
 
 namespace CalledWebMVC.Models.Enums
 {
-    public enum TaskStatus : int
+    public enum Status : int
     {
         [Display(Name = "A fazer")]
         Todo = 0,

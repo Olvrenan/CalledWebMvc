@@ -24,13 +24,18 @@
                     <input asp-for="EndSprint" class="form-control" />
                     <span asp-validation-for="EndSprint" class="text-danger"></span>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-md-12">
-                    <label asp-for="MetaSprint" class="control-label"></label>
-                    <input cols="40" asp-for="MetaSprint" class="form-control" />
-                    <span asp-validation-for="MetaSprint" class="text-danger"></span>
+                <div class="form-group col-md-4">
+                    <label asp-for="ProjetoId" class="control-label"></label>
+                    <select asp-for="ProjetoId" asp-items="@(new SelectList(Model.Projetos,"ProjetoId","Nome"))" class="form-control">
+                    </select>
+                    <span asp-validation-for="ProjetoId" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label asp-for="MetaSprint" class="control-label"></label>
+                        <input cols="40" asp-for="MetaSprint" class="form-control" />
+                        <span asp-validation-for="MetaSprint" class="text-danger"></span>
+                    </div>
                 </div>
             </div>
             <div class="col-md-12">

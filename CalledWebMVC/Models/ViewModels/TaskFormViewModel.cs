@@ -10,7 +10,7 @@ namespace CalledWebMVC.Models.ViewModels
         public ICollection<Functionary> Functionaries { get; set; }
         public ICollection<Sprint> Sprints { get; set; }
         public string Title { get; internal set; }
-        public TaskStatus TaskStatus { get; internal set; }
+        public Status TaskStatus { get; internal set; }
         public int Id { get; internal set; }
         public string Categoria { get; internal set; }
         public string FunctionaryName { get; internal set; }

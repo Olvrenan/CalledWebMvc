@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CalledWebMVC.Models.Projeto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<h2>Projetos</h2>
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link" asp-action="Index">Em andamento</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" asp-action="Concluidos">Concluidos</a>
+    </li>
+
+</ul>
+<br />
+<p>
+    <a class="btn btn-primary" asp-action="Create">Criar novo projeto</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.DataCriacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataCriacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a asp-action="Sprints" class="btn btn-info" asp-route-id="@item.ProjetoId">Sprints</a> |
+                    <a asp-action="Edit" class="btn btn-info" asp-route-id="@item.ProjetoId">Editar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

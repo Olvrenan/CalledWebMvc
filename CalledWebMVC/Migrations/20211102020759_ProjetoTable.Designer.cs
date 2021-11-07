@@ -3,14 +3,16 @@ using System;
 using CalledWebMVC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CalledWebMVC.Migrations
 {
     [DbContext(typeof(CalledWebMvcContext))]
-    partial class CalledWebMvcContextModelSnapshot : ModelSnapshot
+    [Migration("20211102020759_ProjetoTable")]
+    partial class ProjetoTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,23 +105,15 @@ namespace CalledWebMVC.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Descricao")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("varchar(60) CHARACTER SET utf8mb4")
-                        .HasMaxLength(60);
-
-                    b.Property<int?>("SprintId")
-                        .HasColumnType("int");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("ProjetoId");
-
-                    b.HasIndex("SprintId");
 
                     b.ToTable("Projeto");
                 });
@@ -137,11 +131,9 @@ namespace CalledWebMVC.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("MetaSprint")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("ProjetoId")
@@ -237,17 +229,10 @@ namespace CalledWebMVC.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CalledWebMVC.Models.Projeto", b =>
-                {
-                    b.HasOne("CalledWebMVC.Models.Sprint", null)
-                        .WithMany("Projetos")
-                        .HasForeignKey("SprintId");
-                });
-
             modelBuilder.Entity("CalledWebMVC.Models.Sprint", b =>
                 {
                     b.HasOne("CalledWebMVC.Models.Projeto", "Projeto")
-                        .WithMany()
+                        .WithMany("Sprints")
                         .HasForeignKey("ProjetoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

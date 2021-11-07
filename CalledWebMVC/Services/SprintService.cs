@@ -35,7 +35,8 @@ namespace CalledWebMVC.Services
 
         public async Task<List<Sprint>> FindDoneSprints()
         {
-            return await _context.Sprint.Where(x => x.EndSprint < DateTime.Today).ToListAsync();
+            return await _context.Sprint.Where(x => x.EndSprint < DateTime.Today)
+                .ToListAsync();
         }
 
 
@@ -63,6 +64,58 @@ namespace CalledWebMVC.Services
             }
         }
 
+        public async Task<IEnumerable<CalledWebMVC.Models.ViewModels.SprintFormViewModel>> FindByProjetoSprintsActive(int id)
+        {
+
+
+            var data = await (from t1 in _context.Projeto
+                              join t2 in _context.Sprint on t1.ProjetoId equals t2.ProjetoId
+                              orderby t2.BeginSprint
+                              select new CalledWebMVC.Models.ViewModels.SprintFormViewModel
+                              {
+                                  Name = t2.Name,
+                                  Id = t2.Id,
+                                  BeginSprint = t2.BeginSprint,
+                                  EndSprint = t2.EndSprint,
+                                  MetaSprint = t2.MetaSprint,
+                                  ProjetoId = t1.ProjetoId,
+
+
+                              }).Where(x => x.ProjetoId == id && x.EndSprint >= DateTime.Today)
+                              
+                              .ToListAsync();
+
+
+            return data;
+
+            //return await _context.Task.Include(x => x.Sprint).Where(x => x.SprintId == id).ToListAsync();
+        }
+        public async Task<IEnumerable<CalledWebMVC.Models.ViewModels.SprintFormViewModel>> FindByProjetoSprintsDone(int id)
+        {
+
+
+            var data = await (from t1 in _context.Projeto
+                              join t2 in _context.Sprint on t1.ProjetoId equals t2.ProjetoId
+                              orderby t2.BeginSprint
+                              select new CalledWebMVC.Models.ViewModels.SprintFormViewModel
+                              {
+                                  Name = t2.Name,
+                                  Id = t2.Id,
+                                  BeginSprint = t2.BeginSprint,
+                                  EndSprint = t2.EndSprint,
+                                  MetaSprint = t2.MetaSprint,
+                                  ProjetoId = t1.ProjetoId,
+
+
+                              }).Where(x => x.ProjetoId == id && x.EndSprint < DateTime.Today)
+
+                              .ToListAsync();
+
+
+            return data;
+
+            //return await _context.Task.Include(x => x.Sprint).Where(x => x.SprintId == id).ToListAsync();
+        }
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CalledWebMVC.Models;
+using CalledWebMVC.Models.ViewModels;
 using CalledWebMVC.Services;
 using CalledWebMVC.Services.Exceptions;
 using Microsoft.AspNetCore.Authorization;
@@ -14,12 +15,14 @@ namespace CalledWebMVC.Controllers
 
         private readonly SprintService _sprintService;
         private readonly TaskService _taskService;
+        private readonly ProjetoService _projetoService;
 
         
-        public SprintController(SprintService sprintService, TaskService taskService)
+        public SprintController(SprintService sprintService, TaskService taskService, ProjetoService projetoService)
         {
             _sprintService = sprintService;
             _taskService = taskService;
+            _projetoService = projetoService;
         }
 
         [Authorize]
@@ -50,8 +53,9 @@ namespace CalledWebMVC.Controllers
         [Authorize]
         public ActionResult Create()
         {
-
-            return View();
+            var projetos = _projetoService.FindAll();
+            var viewModel = new SprintFormViewModel { Projetos = projetos };
+            return View(viewModel);
         }
 
         [Authorize]
@@ -59,9 +63,9 @@ namespace CalledWebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Sprint sprint)
         {
-
             _sprintService.Insert(sprint);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Sprints", "Projeto", new { id = sprint.ProjetoId }); ;
+           
 
         }
 

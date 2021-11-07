@@ -39,13 +39,9 @@ namespace CalledWebMVC.Models
         public string Categoria { get; set; }
 
         [Display(Name = "Status")]
-        public TaskStatus TaskStatus { get; set; }
+        public Status TaskStatus { get; set; }
 
         public ICollection<FuncionaryTask> FuncionaryTasks { get; set; }
-
-
-
-
         public Task()
         {
         }

@@ -42,6 +42,7 @@ namespace CalledWebMVC
             services.AddScoped<FunctionaryService>();
             services.AddScoped<TaskService>();
             services.AddScoped<SprintService>();
+            services.AddScoped<ProjetoService>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(opcoes =>

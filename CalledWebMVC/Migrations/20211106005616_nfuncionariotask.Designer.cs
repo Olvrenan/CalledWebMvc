@@ -3,14 +3,16 @@ using System;
 using CalledWebMVC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CalledWebMVC.Migrations
 {
     [DbContext(typeof(CalledWebMvcContext))]
-    partial class CalledWebMvcContextModelSnapshot : ModelSnapshot
+    [Migration("20211106005616_nfuncionariotask")]
+    partial class nfuncionariotask
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -172,9 +174,6 @@ namespace CalledWebMVC.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("FunctionaryId")
-                        .HasColumnType("int");
-
                     b.Property<int>("SprintId")
                         .HasColumnType("int");
 
@@ -185,8 +184,6 @@ namespace CalledWebMVC.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("FunctionaryId");
 
                     b.HasIndex("SprintId");
 
@@ -255,12 +252,6 @@ namespace CalledWebMVC.Migrations
 
             modelBuilder.Entity("CalledWebMVC.Models.Task", b =>
                 {
-                    b.HasOne("CalledWebMVC.Models.Functionary", "Functionary")
-                        .WithMany()
-                        .HasForeignKey("FunctionaryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CalledWebMVC.Models.Sprint", "Sprint")
                         .WithMany("Tasks")
                         .HasForeignKey("SprintId")
