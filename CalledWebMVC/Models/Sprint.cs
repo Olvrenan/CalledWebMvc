@@ -14,7 +14,7 @@ namespace CalledWebMVC.Models
         [Required(ErrorMessage = "{0} Obrigatório")]
         public string Name { get; set; }
 
-        [Display(Name = "Data Inicial")]
+        [Display(Name = "Data Inicio")]
         [Required(ErrorMessage = "{0} Obrigatório")]
         public DateTime BeginSprint { get; set; }
 

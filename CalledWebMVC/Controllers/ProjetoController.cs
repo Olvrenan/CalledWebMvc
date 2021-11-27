@@ -15,12 +15,13 @@ namespace CalledWebMVC.Controllers
     {
         private readonly ProjetoService _projetoService;
         private readonly SprintService _sprintService;
+        private readonly TaskService _taskService;
 
-
-        public ProjetoController(SprintService sprintService, ProjetoService taskService)
+        public ProjetoController(SprintService sprintService, ProjetoService projetoService, TaskService taskService)
         {
             _sprintService = sprintService;
-            _projetoService = taskService;
+            _projetoService = projetoService;
+            _taskService = taskService;
         }
 
         public async Task<ActionResult> Index()
@@ -47,8 +48,7 @@ namespace CalledWebMVC.Controllers
         [Authorize]
         public async Task<IActionResult> Sprints(int? id)
         {
-            
-            
+
             var obj = await _sprintService.FindByProjetoSprintsActive(id.Value);
 
             return View(obj);
@@ -61,14 +61,6 @@ namespace CalledWebMVC.Controllers
             return View(obj);
         }
 
-        public async Task<IActionResult> Teste(int? id)
-        {
-
-
-            var obj = await _sprintService.FindByProjetoSprintsActive(id.Value);
-
-            return View(obj);
-        }
 
 
 

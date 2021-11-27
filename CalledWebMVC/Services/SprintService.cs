@@ -22,7 +22,7 @@ namespace CalledWebMVC.Services
         {
             return _context.Sprint.FirstOrDefault(obj => obj.Id == Id); 
         }
-
+        
         public  List<Sprint> FindAll()
         {
             return _context.Sprint.OrderBy(x=> x.Name).ToList();
@@ -116,6 +116,8 @@ namespace CalledWebMVC.Services
 
             //return await _context.Task.Include(x => x.Sprint).Where(x => x.SprintId == id).ToListAsync();
         }
+       
+
 
     }
 }

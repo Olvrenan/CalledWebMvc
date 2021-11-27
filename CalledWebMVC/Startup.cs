@@ -15,6 +15,8 @@ using CalledWebMVC.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace CalledWebMVC
 {
@@ -36,8 +38,23 @@ namespace CalledWebMVC
                       options.UseMySql(Configuration.GetConnectionString("CalledWebMvcContext"), builder =>
                                   builder.MigrationsAssembly("CalledWebMVC")));
 
-            services.AddSession();
 
+            //services.AddDefaultIdentity<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<CalledWebMvcContext>();
+
+
+            //services.AddIdentityCore<ApplicationUser>().AddRoles<IdentityRole>()
+            //   .AddEntityFrameworkStores<CalledWebMvcContext>();
+
+            //services.ConfigureApplicationCookie(options => {
+            //    options.LoginPath = "/User/Login";
+            //}); 
+
+
+
+
+
+
+            services.AddSession();
             services.AddScoped<SeedingService>();
             services.AddScoped<FunctionaryService>();
             services.AddScoped<TaskService>();
@@ -50,8 +67,9 @@ namespace CalledWebMVC
                     opcoes.LoginPath = "/Usuarios/Login";
                 });
 
-       
+
         }
+      
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SeedingService seedingService)
@@ -67,6 +85,8 @@ namespace CalledWebMVC
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            
 
             app.UseAuthentication();
             app.UseSession();
@@ -84,6 +104,9 @@ namespace CalledWebMVC
                     name: "default",
                     pattern: "{controller=Usuario}/{action=Registro}/{id?}");
             });
+            
+
         }
+       
     }
 }

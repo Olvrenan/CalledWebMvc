@@ -29,6 +29,10 @@ namespace CalledWebMVC.Models
         }
 
 
+        //taskfuncionario relacionamento n para n 
+        public DbSet<CalledWebMVC.Models.ProjectRole> ProjectRole { get; set; }
+
+
 
 
         

@@ -22,6 +22,7 @@ namespace CalledWebMVC.Models
         [Required(ErrorMessage = "Informe a senha")]
         [DataType(DataType.Password)]
         [Display(Name = "Senha:")]
+        [StringLength(8, MinimumLength = 8, ErrorMessage = "{0} O tamanho deve ser maior que {2} caracters")]
         public string Senha { get; set; }
 
 

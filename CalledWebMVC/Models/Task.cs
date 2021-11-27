@@ -29,7 +29,6 @@ namespace CalledWebMVC.Models
         public int SprintId { get; set; }
 
 
-        [Display(Name = "Funcionário")]
         public Functionary Functionary { get; set; }
 
 
@@ -41,11 +40,33 @@ namespace CalledWebMVC.Models
         [Display(Name = "Status")]
         public Status TaskStatus { get; set; }
 
+        public void Definirdatadone(Status status)
+        {
+            if(status == Status.Concluido)
+            {
+                DateDone = DateTime.Today;
+            }
+        }
+
+        public Task(int id, string title, string description, DateTime datecreated, DateTime dateDone,int sprintId, int functionaryId, string categoria, Status taskStatus)
+        {
+            Id = id;
+            Title = title;
+            Description = description;
+            Datecreated = datecreated;
+            DateDone = dateDone;
+            SprintId = sprintId;
+            
+            FunctionaryId = functionaryId;
+            Categoria = categoria;
+            TaskStatus = taskStatus;
+        }
+
         public ICollection<FuncionaryTask> FuncionaryTasks { get; set; }
         public Task()
         {
         }
-        public Task(string title, DateTime dateCreated, DateTime dateDone)
+        public Task(string title, DateTime dateCreated, DateTime dateDone )
         {
             Title = title;
             Datecreated = dateCreated;

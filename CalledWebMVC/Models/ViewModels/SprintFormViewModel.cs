@@ -13,12 +13,16 @@ namespace CalledWebMVC.Models.ViewModels
         public string Name { get; internal set; }
         public int Id { get; internal set; }
 
+        [Display(Name = "Data Final")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime EndSprint { get; internal set; }
         public int ProjetoId { get; internal set; }
 
+        [Display(Name = "Data Inicio")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BeginSprint { get; internal set; }
+
+        [Display(Name = "Meta da Sprint")]
         public string MetaSprint { get; internal set; }
         public string Identificadores { get; set; }
     }

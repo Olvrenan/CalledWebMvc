@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CalledWebMVC.Controllers
@@ -82,7 +83,11 @@ namespace CalledWebMVC.Controllers
                 return NotFound();
             }
 
-            return View(Sprint);
+            List<Projeto> projetos = _projetoService.FindAll();
+            SprintFormViewModel viewModel = new SprintFormViewModel { Sprint = Sprint,  Projetos = projetos  };
+            return View(viewModel);
+
+            
         }
 
         [Authorize]
@@ -91,6 +96,14 @@ namespace CalledWebMVC.Controllers
 
         public IActionResult Edit(int id, Sprint Sprint)
         {
+
+            if (!ModelState.IsValid) {
+
+                var projetos = _projetoService.FindAll();
+                var viewModel = new SprintFormViewModel { Projetos = projetos };
+                return View(viewModel);
+
+            }
             if (id != Sprint.Id)
             {
                 return NotFound();
