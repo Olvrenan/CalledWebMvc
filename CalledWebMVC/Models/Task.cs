@@ -16,11 +16,11 @@ namespace CalledWebMVC.Models
         [Display(Name = "Descrição")]
         public string Description { get; set; }
 
-        [Display(Name = "Data de Criação")]
-        public DateTime Datecreated { get; set; }
+        //[Display(Name = "Data de Criação")]
+        //public DateTime Datecreated { get; set; }
 
-        [Display(Name = "Data de Entrega")]
-        public DateTime DateDone { get; set; }
+        //[Display(Name = "Data de Entrega")]
+        //public DateTime DateDone { get; set; }
 
         public Sprint Sprint { get; set; }
 
@@ -44,17 +44,17 @@ namespace CalledWebMVC.Models
         {
             if(status == Status.Concluido)
             {
-                DateDone = DateTime.Today;
+                //DateDone = DateTime.Today;
             }
         }
 
-        public Task(int id, string title, string description, DateTime datecreated, DateTime dateDone,int sprintId, int functionaryId, string categoria, Status taskStatus)
+        public Task(int id, string title, string description, /*DateTime datecreated, DateTime dateDone*/int sprintId, int functionaryId, string categoria, Status taskStatus)
         {
             Id = id;
             Title = title;
             Description = description;
-            Datecreated = datecreated;
-            DateDone = dateDone;
+            //Datecreated = datecreated;
+            //DateDone = dateDone;
             SprintId = sprintId;
             
             FunctionaryId = functionaryId;
@@ -66,13 +66,7 @@ namespace CalledWebMVC.Models
         public Task()
         {
         }
-        public Task(string title, DateTime dateCreated, DateTime dateDone )
-        {
-            Title = title;
-            Datecreated = dateCreated;
-            DateDone = dateDone;
-        }
-
+       
         
        
 

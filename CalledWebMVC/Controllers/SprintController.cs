@@ -45,6 +45,10 @@ namespace CalledWebMVC.Controllers
         [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
+            ViewData["Name"] = _sprintService.FindById(id.Value).Name;
+            ViewData["MetaSprint"] = _sprintService.FindById(id.Value).MetaSprint;
+            ViewData["BeginSprint"] = _sprintService.FindById(id.Value).BeginSprint;
+            ViewData["EndSprint"] = _sprintService.FindById(id.Value).EndSprint;
 
             var obj = await _taskService.FindBySprint(id.Value);
 
@@ -94,7 +98,7 @@ namespace CalledWebMVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Edit(int id, Sprint Sprint)
+        public IActionResult Edit(int id, Sprint sprint)
         {
 
             if (!ModelState.IsValid) {
@@ -104,13 +108,13 @@ namespace CalledWebMVC.Controllers
                 return View(viewModel);
 
             }
-            if (id != Sprint.Id)
+            if (id != sprint.Id)
             {
                 return NotFound();
             }
             try
             {
-                _sprintService.Update(Sprint);
+                _sprintService.Update(sprint);
                 return RedirectToAction(nameof(Index));
             }
             catch (ApplicationException e)

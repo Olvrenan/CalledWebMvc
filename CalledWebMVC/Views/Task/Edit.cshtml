@@ -26,7 +26,7 @@
                     <select asp-for="Task.TaskStatus" asp-items="Html.GetEnumSelectList <CalledWebMVC.Models.Enums.Status>()" class="form-control"></select>
                     <span asp-validation-for="Task.TaskStatus" class="text-danger"></span>
                 </div>
-                <div class="form-group col-md-4">
+                @*<div class="form-group col-md-4">
                     <label asp-for="Task.Datecreated" class="control-label"></label>
                     <input asp-for="Task.Datecreated" class="form-control" />
                     <span asp-validation-for="Task.Datecreated" class="text-danger"></span>
@@ -35,7 +35,7 @@
                     <label asp-for="Task.DateDone" class="control-label"></label>
                     <input asp-for="Task.DateDone" class="form-control" />
                     <span asp-validation-for="Task.DateDone" class="text-danger"></span>
-                </div>
+                </div>*@
             </div>
             <div class="row">
 

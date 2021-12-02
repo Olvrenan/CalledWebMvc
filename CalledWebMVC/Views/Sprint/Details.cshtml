@@ -13,14 +13,13 @@
 <h4>Tarefas da Sprint</h4>
 
 
-@*@foreach (var x in Model)
-{
-<h4>@Html.DisplayFor(modelItem => x.Name)</h4>
+<h4>Sprint @ViewData["Name"]</h4>
 <hr />
-<h6>@Html.DisplayNameFor(modelItem => x.MetaSprint): <small class="text-muted">@Html.DisplayFor(modelItem => x.MetaSprint)</small></h6>
-<h6>@Html.DisplayNameFor(modelItem => x.BeginSprint): <small class="text-muted">@Html.DisplayFor(modelItem => x.BeginSprint) </small>-
-    @Html.DisplayNameFor(modelItem => x.EndSprint): <small class="text-muted">@Html.DisplayFor(modelItem => x.EndSprint)</small></h6> 
-}*@
+<h6>Sprint Goal: <small class="text-muted">@ViewData["MetaSprint"]</small></h6>
+<h6>
+    Data de Inicio: <small class="text-muted">@ViewData["BeginSprint"] </small>-
+    Data de Encerramento: <small class="text-muted">@ViewData["EndSprint"]</small>
+</h6>
 
 <br />
 
@@ -147,13 +146,13 @@
 
         });
 
-         $(document).ready(function () {
-        $('#myTable').DataTable({
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
-            }
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+                }
+            });
         });
-    });
 
     </script>
 
